@@ -1,4 +1,4 @@
-package com.keresman.editor.view;
+package com.keresman.editor;
 
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
@@ -20,7 +20,7 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultEditorKit;
 
-public class EditorForm extends JFrame {
+public class EditorManager extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
@@ -51,7 +51,7 @@ public class EditorForm extends JFrame {
     private boolean isEdited;
     private Optional<File> selectedFile = Optional.empty();
 
-    public EditorForm() {
+    public EditorManager() {
         initComponents();
         initEditMenu();
     }
@@ -256,7 +256,7 @@ public class EditorForm extends JFrame {
                 selectedFile = Optional.empty();
             }
         } catch (IOException ex) {
-            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miOpenActionPerformed
 
@@ -265,7 +265,7 @@ public class EditorForm extends JFrame {
             selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miSaveActionPerformed
 
@@ -274,7 +274,7 @@ public class EditorForm extends JFrame {
             selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miSaveAsActionPerformed
 
