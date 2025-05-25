@@ -40,8 +40,8 @@ public final class FileUtils {
 
         Files.copy(
                 Paths.get(source),
-                Paths.get(destination));
-
+                Paths.get(destination)
+        );
     }
 
     private static void createDirPath(String destination) throws IOException {
@@ -78,9 +78,9 @@ public final class FileUtils {
             String extension = selectedFile.getName()
                     .substring(selectedFile.getName().lastIndexOf(".") + 1);
 
-            boolean hasCorrectExtensions = List.of(extensions).contains(extension.toLowerCase());
+            boolean hasCorrectExtension = List.of(extensions).contains(extension.toLowerCase());
 
-            return selectedFile.exists() && hasCorrectExtensions
+            return selectedFile.exists() && hasCorrectExtension
                     ? Optional.of(selectedFile)
                     : Optional.empty();
         }
