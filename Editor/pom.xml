@@ -29,10 +29,20 @@
             <artifactId>Exceptions</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>3.6</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
-        <exec.mainClass>com.keresman.editor.Editor</exec.mainClass>
+        <exec.mainClass>com.keresman.view.Editor</exec.mainClass>
     </properties>
 </project>

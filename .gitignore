@@ -26,3 +26,4 @@ replay_pid*
 /LSP/target/
 /Utilities/target/
 /DAP/target/
+/Exceptions/target/

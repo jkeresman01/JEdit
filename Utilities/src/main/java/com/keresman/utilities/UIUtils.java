@@ -4,13 +4,14 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
 /**
  * Utility class for setting the Swing look and feel.
  *
- * This class is not intended to be extended or instantiated.
- * It follows the utility class design pattern, and explicitly forbids subclassing and
+ * This class is not intended to be extended or instantiated. It follows the
+ * utility class design pattern, and explicitly forbids subclassing and
  * instantiation
  *
  */
@@ -22,25 +23,15 @@ public final class UIUtils {
 
     /**
      * Attempts to set the look and feel of the Swing UI to the specified class
-     * name, if it is installed on the system.
+     * name
      *
-     * @param lookAndFeel
+     * @param lookAndFeel 
      */
-    public static void setLookAndFeel(String lookAndFeel) {
-        Optional<UIManager.LookAndFeelInfo> selectedLookAndFeelOps = getInstaledLookAndFeel(lookAndFeel);
-
-        if (selectedLookAndFeelOps.isPresent()) {
-            trySetLookAndFeel(lookAndFeel);
-        }
+    public static void setLookAndFeel(LookAndFeel lookAndFeel) {
+        trySetLookAndFeel(lookAndFeel);
     }
 
-    private static Optional<UIManager.LookAndFeelInfo> getInstaledLookAndFeel(String installedLookAndFeel) {
-        return Arrays.stream(UIManager.getInstalledLookAndFeels())
-                .filter(lookAndFell -> installedLookAndFeel.equals(lookAndFell.getClassName()))
-                .findFirst();
-    }
-
-    private static void trySetLookAndFeel(String lookAndFeel) {
+    private static void trySetLookAndFeel(LookAndFeel lookAndFeel) {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception ex) {
