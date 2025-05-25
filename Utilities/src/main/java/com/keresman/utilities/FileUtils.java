@@ -23,6 +23,7 @@ public final class FileUtils {
     private static final String UPLOAD = "Upload";
     private static final String TEXT_FILE_DOCUMENTS = "Text file";
     private static final String TXT_EXTENSION = "txt";
+    private static final String TEXT_FILE_TXT = "Text file (.txt)";
     private static final String SAVE = "Save";
 
     private FileUtils() {
@@ -91,6 +92,21 @@ public final class FileUtils {
         return Optional.empty();
     }
 
+    public static Optional<String> loadText() throws IOException {
+        File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
+
+        JFileChooser chooser = new JFileChooser(homeDirectory);
+        chooser.setFileFilter(new FileNameExtensionFilter(TEXT_FILE_TXT, TXT_EXTENSION));
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = chooser.getSelectedFile();
+            String fileText = Files.readString(selectedFile.toPath());
+            return Optional.of(fileText);
+        }
+
+        return Optional.empty();
+    }
+
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
             File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
@@ -107,6 +123,10 @@ public final class FileUtils {
 
                 String extension = selectedFile.getName()
                         .substring(selectedFile.getName().lastIndexOf(".") + 1);
+
+                if (TXT_EXTENSION.equals(extension)) {
+                    selectedFile = new File(selectedFile.toString().concat(".").concat(TXT_EXTENSION));
+                }
 
                 optFile = Optional.of(selectedFile);
 

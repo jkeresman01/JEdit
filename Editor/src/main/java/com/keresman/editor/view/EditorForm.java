@@ -1,15 +1,24 @@
 package com.keresman.editor.view;
 
 import com.keresman.utilities.FileUtils;
+import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ActionMap;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultEditorKit;
 
 public class EditorForm extends JFrame {
 
@@ -44,6 +53,7 @@ public class EditorForm extends JFrame {
 
     public EditorForm() {
         initComponents();
+        initEditMenu();
     }
 
     @SuppressWarnings("unchecked")
@@ -190,19 +200,69 @@ public class EditorForm extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void miNewActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miNewActionPerformed
-        // TODO add your handling code here:
+    private void initEditMenu() {
+        ActionMap actionMap = tpContent.getActionMap();
 
+        JMenuItem cutMenuItem = MenuUtils.createMenuItem(
+                actionMap.get(DefaultEditorKit.cutAction),
+                "Cut",
+                KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK)
+        );
+
+        JMenuItem copyMenuItem = MenuUtils.createMenuItem(
+                actionMap.get(DefaultEditorKit.copyAction),
+                "Copy",
+                KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
+        );
+
+        JMenuItem pasteMenuItem = MenuUtils.createMenuItem(
+                actionMap.get(DefaultEditorKit.pasteAction),
+                "Paste",
+                KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK)
+        );
+
+        JMenuItem selectAllMenuItem = MenuUtils.createMenuItem(
+                actionMap.get(DefaultEditorKit.selectAllAction),
+                "Select all",
+                KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK)
+        );
+
+        menuEdit.add(cutMenuItem);
+        menuEdit.add(copyMenuItem);
+        menuEdit.add(pasteMenuItem);
+
+        menuEdit.addSeparator();
+
+        menuEdit.add(selectAllMenuItem);
+    }
+
+    private void miNewActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miNewActionPerformed
+        if (isEdited) {
+            miSaveAs.doClick();
+        }
+
+        tpContent.setText("");
+        isEdited = false;
+        selectedFile = Optional.empty();
     }//GEN-LAST:event_miNewActionPerformed
 
     private void miOpenActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miOpenActionPerformed
-        // TODO add your handling code here:
+        try {
+            Optional<String> optText = FileUtils.loadText();
 
+            if (optText.isPresent()) {
+                tpContent.setText(optText.get());
+                isEdited = true;
+                selectedFile = Optional.empty();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_miOpenActionPerformed
 
     private void miSaveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miSaveActionPerformed
         try {
-            selectedFile = FileUtils.saveText(tpContent.getText(),Optional.empty());
+            selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
             Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,6 +297,7 @@ public class EditorForm extends JFrame {
     }//GEN-LAST:event_miExitActionPerformed
 
     private void miAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miAboutActionPerformed
-        MessageUtils.showInformationMessage("JEditor, Version 0.0.0.0.0.0.0.1");
+        MessageUtils.showInformationMessage("JEditor, Version 0.1");
     }//GEN-LAST:event_miAboutActionPerformed
+
 }
