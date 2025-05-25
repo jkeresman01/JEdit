@@ -1,7 +1,5 @@
 package com.keresman.editor;
 
-
-
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
@@ -182,11 +180,18 @@ abstract class EditorManagerDesigner extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public abstract void miNewActionPerformed(ActionEvent evt);
+
     public abstract void miOpenActionPerformed(ActionEvent evt);
+
     public abstract void miSaveActionPerformed(ActionEvent evt);
+
     public abstract void miSaveAsActionPerformed(ActionEvent evt);
+
     public abstract void miPageSetupActionPerformed(ActionEvent evt);
+
     public abstract void miPrintActionPerformed(ActionEvent evt);
+
     public abstract void miExitActionPerformed(ActionEvent evt);
+
     public abstract void miAboutActionPerformed(ActionEvent evt);
 }
