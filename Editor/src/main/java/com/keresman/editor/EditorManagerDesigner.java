@@ -33,13 +33,13 @@ abstract class EditorManagerDesigner extends JFrame {
     protected javax.swing.JTextPane tpContent;
     // End of variables declaration//GEN-END:variables
 
-    public EditorManagerDesigner() {
-        initComponents();
+    EditorManagerDesigner() {
+        //package scoped, only Edito Manager can do
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    protected void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();

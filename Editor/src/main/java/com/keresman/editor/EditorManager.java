@@ -25,7 +25,7 @@ public class EditorManager extends EditorManagerDesigner {
     private boolean isEdited;
     
     public EditorManager() {
-        super();
+        initComponents();
         initEditMenu();
     }
 
