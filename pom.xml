@@ -8,8 +8,9 @@
     <modules>
         <module>LSP</module>
         <module>DAP</module>
-        <module>Editor</module>
         <module>Utilities</module>
+        <module>Editor</module>
+        <module>Exceptions</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
