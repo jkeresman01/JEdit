@@ -23,15 +23,10 @@ public final class UIUtils {
 
     /**
      * Attempts to set the look and feel of the Swing UI to the specified class
-     * name
      *
      * @param lookAndFeel 
      */
     public static void setLookAndFeel(LookAndFeel lookAndFeel) {
-        trySetLookAndFeel(lookAndFeel);
-    }
-
-    private static void trySetLookAndFeel(LookAndFeel lookAndFeel) {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception ex) {
