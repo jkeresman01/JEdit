@@ -27,7 +27,7 @@ public final class MessageUtils {
         JOptionPane.showMessageDialog(
                 null,
                 message,
-                MessageSeverity.INFO.name(),
+                MessageSeverity.INFO.toString(),
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
@@ -41,7 +41,7 @@ public final class MessageUtils {
         JOptionPane.showMessageDialog(
                 null,
                 message,
-                MessageSeverity.WARN.name(),
+                MessageSeverity.WARN.toString(),
                 JOptionPane.WARNING_MESSAGE
         );
     }
@@ -55,7 +55,7 @@ public final class MessageUtils {
         JOptionPane.showMessageDialog(
                 null,
                 message,
-                MessageSeverity.ERROR.name(),
+                MessageSeverity.ERROR.toString(),
                 JOptionPane.ERROR_MESSAGE
         );
     }
