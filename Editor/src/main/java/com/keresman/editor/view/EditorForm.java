@@ -76,6 +76,7 @@ public class EditorForm extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JEdit 0.1");
+        setMinimumSize(new java.awt.Dimension(1280, 800));
 
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -201,11 +202,7 @@ public class EditorForm extends JFrame {
 
     private void miSaveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miSaveActionPerformed
         try {
-            selectedFile = FileUtils.saveText(
-                    tpContent.getText(),
-                    Optional.empty()
-            );
-
+            selectedFile = FileUtils.saveText(tpContent.getText(),Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
             Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,11 +211,7 @@ public class EditorForm extends JFrame {
 
     private void miSaveAsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miSaveAsActionPerformed
         try {
-            selectedFile = FileUtils.saveText(
-                    tpContent.getText(),
-                    Optional.empty()
-            );
-
+            selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
             Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
