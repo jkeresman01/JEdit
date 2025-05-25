@@ -42,7 +42,7 @@ public final class FileUtils {
         createDirPath(destination);
 
         Files.copy(
-                Paths.get(source),
+                Paths.get(source), 
                 Paths.get(destination)
         );
     }
@@ -66,11 +66,7 @@ public final class FileUtils {
      * if no valid file is selected
      */
     public static Optional<File> uploadFile(String description, String... extensions) {
-        JFileChooser chooser = createFileChooser(
-                description,
-                Optional.of(UPLOAD),
-                extensions
-        );
+        JFileChooser chooser = createFileChooser(description, Optional.of(UPLOAD), extensions);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
@@ -88,11 +84,7 @@ public final class FileUtils {
     }
 
     public static Optional<String> loadText() throws IOException {
-        JFileChooser chooser = createFileChooser(
-                TEXT_FILE_DOCUMENTS,
-                Optional.empty(),
-                TXT_EXTENSION
-        );
+        JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
@@ -105,11 +97,7 @@ public final class FileUtils {
 
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
-            JFileChooser chooser = createFileChooser(
-                    TEXT_FILE_DOCUMENTS,
-                    Optional.empty(),
-                    TXT_EXTENSION
-            );
+            JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
 
             if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
@@ -119,11 +107,8 @@ public final class FileUtils {
 
                 if (TXT_EXTENSION.equals(extension)) {
                     selectedFile = new File(selectedFile.toString().concat(".").concat(TXT_EXTENSION));
+                    Files.writeString(selectedFile.toPath(), text);
                 }
-
-                optFile = Optional.of(selectedFile);
-
-                Files.writeString(optFile.get().toPath(), text);
             }
         } else {
             Files.writeString(optFile.get().toPath(), text);
