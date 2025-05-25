@@ -7,14 +7,14 @@ import javax.swing.JFrame;
 public class Editor extends JFrame {
 
     private static final String DEFAULT_LOOK_AND_FEEL_NIMUBS = "Nimubs";
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
-    
+
     public Editor() {
         initComponents();
-        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
