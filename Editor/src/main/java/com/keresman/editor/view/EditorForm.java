@@ -1,12 +1,8 @@
-package com.keresman.view;
+package com.keresman.editor.view;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MessageUtils;
-import com.keresman.utilities.UIUtils;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 
-public class Editor extends JFrame {
+public class EditorForm extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
@@ -46,7 +42,7 @@ public class Editor extends JFrame {
     private boolean isEdited;
     private Optional<File> selectedFile = Optional.empty();
 
-    public Editor() {
+    public EditorForm() {
         initComponents();
     }
 
@@ -80,12 +76,12 @@ public class Editor extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JEdit 0.1");
-        setPreferredSize(new java.awt.Dimension(1280, 800));
 
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
+        jTree1.setPreferredSize(new java.awt.Dimension(200, 74));
         jScrollPane1.setViewportView(jTree1);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.LINE_START);
@@ -212,7 +208,7 @@ public class Editor extends JFrame {
 
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miSaveActionPerformed
 
@@ -225,7 +221,7 @@ public class Editor extends JFrame {
 
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miSaveAsActionPerformed
 
@@ -250,9 +246,4 @@ public class Editor extends JFrame {
     private void miAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_miAboutActionPerformed
         MessageUtils.showInformationMessage("JEditor, Version 0.0.0.0.0.0.0.1");
     }//GEN-LAST:event_miAboutActionPerformed
-
-    public static void main(String args[]) {
-        UIUtils.setLookAndFeel(new FlatDarculaLaf());
-        EventQueue.invokeLater(() -> new Editor().setVisible(true));
-    }
 }
