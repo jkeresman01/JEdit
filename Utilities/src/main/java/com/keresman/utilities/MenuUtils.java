@@ -1,5 +1,6 @@
 package com.keresman.utilities;
 
+import com.keresman.enums.EditOptions;
 import javax.swing.Action;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -21,14 +22,14 @@ public class MenuUtils {
 
     public static JMenuItem createMenuItem(
             Action action,
-            String text,
+            EditOptions editOption,
             KeyStroke accelerator
     ) {
         JMenuItem menuItem = new JMenuItem();
 
         menuItem.setAction(action);
         menuItem.setAccelerator(accelerator);
-        menuItem.setText(text);
+        menuItem.setText(editOption.toString());
 
         return menuItem;
     }

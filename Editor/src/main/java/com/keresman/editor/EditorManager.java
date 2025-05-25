@@ -1,5 +1,6 @@
 package com.keresman.editor;
 
+import com.keresman.enums.EditOptions;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
@@ -18,11 +19,11 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerPartial {
-
-    private boolean isEdited;
+    
     private ActionMap actionMap = tpContent.getActionMap();
     private Optional<File> selectedFile = Optional.empty();
-
+    private boolean isEdited;
+    
     public EditorManager() {
         super();
         initEditMenu();
@@ -38,7 +39,7 @@ public class EditorManager extends EditorManagerPartial {
     private void initCutMenuItem() {
         JMenuItem cutMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.cutAction),
-                "Cut",
+                EditOptions.CUT,
                 KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK)
         );
 
@@ -48,7 +49,7 @@ public class EditorManager extends EditorManagerPartial {
     private void initPasteMenuItem() {
         JMenuItem pasteMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.pasteAction),
-                "Paste",
+                EditOptions.PASTE,
                 KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK)
         );
 
@@ -58,7 +59,7 @@ public class EditorManager extends EditorManagerPartial {
     private void initCopyMenuItem() {
         JMenuItem copyMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.copyAction),
-                "Copy",
+                EditOptions.COPY,
                 KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
         );
 
@@ -68,7 +69,7 @@ public class EditorManager extends EditorManagerPartial {
     private void initSelectAllMenuItem() {
         JMenuItem selectAllMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.selectAllAction),
-                "Select all",
+                EditOptions.SELECT_ALL,
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK)
         );
 
