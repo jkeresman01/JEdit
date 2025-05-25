@@ -42,7 +42,7 @@ public final class FileUtils {
         createDirPath(destination);
 
         Files.copy(
-                Paths.get(source), 
+                Paths.get(source),
                 Paths.get(destination)
         );
     }
@@ -101,20 +101,23 @@ public final class FileUtils {
 
             if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
-
-                String extension = selectedFile.getName()
-                        .substring(selectedFile.getName().lastIndexOf(".") + 1);
-
-                if (TXT_EXTENSION.equals(extension)) {
-                    selectedFile = new File(selectedFile.toString().concat(".").concat(TXT_EXTENSION));
-                    Files.writeString(selectedFile.toPath(), text);
-                }
+                writeToFile(selectedFile, text);
             }
         } else {
             Files.writeString(optFile.get().toPath(), text);
         }
 
         return optFile;
+    }
+
+    private static void writeToFile(File file, String text) throws IOException {
+        String fileName = file.getName();
+        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+        if (TXT_EXTENSION.equals(extension)) {
+            file = new File(file.toString().concat(".").concat(TXT_EXTENSION));
+            Files.writeString(file.toPath(), text);
+        }
     }
 
     private static JFileChooser createFileChooser(
