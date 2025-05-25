@@ -1,5 +1,6 @@
 package com.keresman.utilities;
 
+import static java.awt.SystemColor.text;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,11 +41,7 @@ public final class FileUtils {
      */
     public static void copy(String source, String destination) throws IOException {
         createDirPath(destination);
-
-        Files.copy(
-                Paths.get(source),
-                Paths.get(destination)
-        );
+        Files.copy(Paths.get(source), Paths.get(destination));
     }
 
     private static void createDirPath(String destination) throws IOException {
@@ -97,17 +94,21 @@ public final class FileUtils {
 
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
-            JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
-
-            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = chooser.getSelectedFile();
-                writeToFile(selectedFile, text);
-            }
+            selectFileToWrite(text);
         } else {
             Files.writeString(optFile.get().toPath(), text);
         }
 
         return optFile;
+    }
+
+    private static void selectFileToWrite(String text) throws IOException {
+        JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = chooser.getSelectedFile();
+            writeToFile(selectedFile, text);
+        }
     }
 
     private static void writeToFile(File file, String text) throws IOException {
@@ -121,10 +122,7 @@ public final class FileUtils {
     }
 
     private static JFileChooser createFileChooser(
-            String description,
-            Optional<String> text,
-            String... extensions
-    ) {
+            String description, Optional<String> text, String... extensions) {
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
         JFileChooser chooser = new JFileChooser(homeDirectory);
 
