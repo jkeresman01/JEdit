@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +16,6 @@ import javax.swing.ActionMap;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-import javax.swing.UIManager;
 import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends JFrame {

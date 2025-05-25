@@ -23,7 +23,6 @@ public final class FileUtils {
     private static final String UPLOAD = "Upload";
     private static final String TEXT_FILE_DOCUMENTS = "Text file";
     private static final String TXT_EXTENSION = "txt";
-    private static final String TEXT_FILE_TXT = "Text file (.txt)";
     private static final String SAVE = "Save";
 
     private FileUtils() {
@@ -67,14 +66,11 @@ public final class FileUtils {
      * if no valid file is selected
      */
     public static Optional<File> uploadFile(String description, String... extensions) {
-        File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
-        JFileChooser chooser = new JFileChooser(homeDirectory);
-
-        chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
-        chooser.setDialogTitle(UPLOAD);
-        chooser.setApproveButtonText(UPLOAD);
-        chooser.setApproveButtonToolTipText(UPLOAD);
-        chooser.setAcceptAllFileFilterUsed(false);
+        JFileChooser chooser = createFileChooser(
+                description,
+                Optional.of(UPLOAD),
+                extensions
+        );
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
@@ -83,20 +79,20 @@ public final class FileUtils {
                     .substring(selectedFile.getName().lastIndexOf(".") + 1);
 
             boolean hasCorrectExtension = List.of(extensions).contains(extension.toLowerCase());
+            boolean isFileValid = selectedFile.exists() && hasCorrectExtension;
 
-            return selectedFile.exists() && hasCorrectExtension
-                    ? Optional.of(selectedFile)
-                    : Optional.empty();
+            return isFileValid ? Optional.of(selectedFile) : Optional.empty();
         }
 
         return Optional.empty();
     }
 
     public static Optional<String> loadText() throws IOException {
-        File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
-
-        JFileChooser chooser = new JFileChooser(homeDirectory);
-        chooser.setFileFilter(new FileNameExtensionFilter(TEXT_FILE_TXT, TXT_EXTENSION));
+        JFileChooser chooser = createFileChooser(
+                TEXT_FILE_DOCUMENTS,
+                Optional.empty(),
+                TXT_EXTENSION
+        );
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
@@ -109,14 +105,11 @@ public final class FileUtils {
 
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
-            File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
-            JFileChooser chooser = new JFileChooser(homeDirectory);
-
-            chooser.setFileFilter(new FileNameExtensionFilter(TEXT_FILE_DOCUMENTS, TXT_EXTENSION));
-            chooser.setDialogTitle(SAVE);
-            chooser.setApproveButtonText(SAVE);
-            chooser.setApproveButtonToolTipText(SAVE);
-            chooser.setAcceptAllFileFilterUsed(false);
+            JFileChooser chooser = createFileChooser(
+                    TEXT_FILE_DOCUMENTS,
+                    Optional.empty(),
+                    TXT_EXTENSION
+            );
 
             if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
@@ -137,6 +130,25 @@ public final class FileUtils {
         }
 
         return optFile;
+    }
+
+    private static JFileChooser createFileChooser(
+            String description,
+            Optional<String> text,
+            String... extensions
+    ) {
+        File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
+        JFileChooser chooser = new JFileChooser(homeDirectory);
+
+        if (text.isPresent()) {
+            chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
+            chooser.setDialogTitle(text.get());
+            chooser.setApproveButtonText(text.get());
+            chooser.setApproveButtonToolTipText(text.get());
+            chooser.setAcceptAllFileFilterUsed(false);
+        }
+
+        return chooser;
     }
 
 }
