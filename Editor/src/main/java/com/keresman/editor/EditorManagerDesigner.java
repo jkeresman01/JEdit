@@ -3,7 +3,7 @@ package com.keresman.editor;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
-abstract class EditorManagerPartial extends JFrame {
+abstract class EditorManagerDesigner extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JMenuBar jMenuBar1;
@@ -31,7 +31,7 @@ abstract class EditorManagerPartial extends JFrame {
     protected javax.swing.JTextPane tpContent;
     // End of variables declaration//GEN-END:variables
 
-    public EditorManagerPartial() {
+    public EditorManagerDesigner() {
         initComponents();
     }
 

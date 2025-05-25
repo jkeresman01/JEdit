@@ -18,7 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
-public class EditorManager extends EditorManagerPartial {
+public class EditorManager extends EditorManagerDesigner {
     
     private ActionMap actionMap = tpContent.getActionMap();
     private Optional<File> selectedFile = Optional.empty();
@@ -98,7 +98,7 @@ public class EditorManager extends EditorManagerPartial {
                 selectedFile = Optional.empty();
             }
         } catch (IOException ex) {
-            Logger.getLogger(EditorManagerPartial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,7 +108,7 @@ public class EditorManager extends EditorManagerPartial {
             selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(EditorManagerPartial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -118,7 +118,7 @@ public class EditorManager extends EditorManagerPartial {
             selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
             isEdited = false;
         } catch (IOException ex) {
-            Logger.getLogger(EditorManagerPartial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
