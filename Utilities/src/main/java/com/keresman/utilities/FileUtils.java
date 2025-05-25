@@ -1,6 +1,5 @@
 package com.keresman.utilities;
 
-import static java.awt.SystemColor.text;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -85,6 +84,12 @@ public final class FileUtils {
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
+
+            if (!selectedFile.exists()) {
+                MessageUtils.showErrorMessage("No such file: %s".formatted(selectedFile.getAbsoluteFile()));
+                return Optional.empty();
+            } 
+
             String fileText = Files.readString(selectedFile.toPath());
             return Optional.of(fileText);
         }

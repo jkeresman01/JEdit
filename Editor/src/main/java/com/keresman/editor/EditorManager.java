@@ -19,11 +19,11 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerDesigner {
-    
-    private ActionMap actionMap = tpContent.getActionMap();
+
+    private ActionMap actionMap = null;
     private Optional<File> selectedFile = Optional.empty();
-    private boolean isEdited;
-    
+    private boolean isEdited = false;
+
     public EditorManager() {
         initComponents();
         initEditMenu();
@@ -37,6 +37,8 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initCutMenuItem() {
+        ActionMap actionMap = tpContent.getActionMap();
+        
         JMenuItem cutMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.cutAction),
                 EditOptions.CUT,
@@ -47,6 +49,8 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initPasteMenuItem() {
+        ActionMap actionMap = tpContent.getActionMap();
+        
         JMenuItem pasteMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.pasteAction),
                 EditOptions.PASTE,
@@ -57,6 +61,8 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initCopyMenuItem() {
+        ActionMap actionMap = tpContent.getActionMap();
+        
         JMenuItem copyMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.copyAction),
                 EditOptions.COPY,
@@ -67,6 +73,8 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initSelectAllMenuItem() {
+        ActionMap actionMap = tpContent.getActionMap();
+        
         JMenuItem selectAllMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.selectAllAction),
                 EditOptions.SELECT_ALL,
