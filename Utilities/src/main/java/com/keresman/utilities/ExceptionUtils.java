@@ -10,7 +10,7 @@ import com.keresman.exceptions.ThrowingExceptionTask;
  * instantiation
  *
  */
-public class ExceptionUtils {
+public final class ExceptionUtils {
 
     public ExceptionUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
