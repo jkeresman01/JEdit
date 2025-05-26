@@ -15,7 +15,7 @@ import javax.swing.KeyStroke;
  */
 public final class MenuUtils {
 
-    public MenuUtils() {
+    private MenuUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
 
     }
