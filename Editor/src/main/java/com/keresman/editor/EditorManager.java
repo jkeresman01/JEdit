@@ -1,6 +1,6 @@
 package com.keresman.editor;
 
-import com.keresman.editor.view.editor.EditorPanelDesigner;
+import com.keresman.editor.view.edit.EditorPanelDesigner;
 import com.keresman.editor.view.projects.ProjectTreePanelDesigner;
 import com.keresman.editor.view.welcome.WelcomePanelFormDesigner;
 import com.keresman.enums.EditOptions;
