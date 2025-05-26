@@ -1,7 +1,5 @@
 package com.keresman.utilities;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
@@ -25,10 +23,9 @@ public final class UIUtils {
      * @param lookAndFeel 
      */
     public static void setLookAndFeel(LookAndFeel lookAndFeel) {
-        try {
-            UIManager.setLookAndFeel(lookAndFeel);
-        } catch (Exception ex) {
-            Logger.getLogger(UIUtils.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ExceptionUtils.executeUnchecked(
+                ()-> UIManager.setLookAndFeel(lookAndFeel),
+                "Failed to set look and feel to: %s".formatted(lookAndFeel.getClass().getName())
+        );
     }
 }
