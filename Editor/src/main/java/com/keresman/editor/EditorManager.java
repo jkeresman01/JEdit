@@ -1,9 +1,10 @@
 package com.keresman.editor;
 
-import com.keresman.editor.view.EditorPanelDesigner;
-import com.keresman.editor.view.ProjectTreePanelDesigner;
-import com.keresman.editor.view.WelcomePanelFormDesigner;
+import com.keresman.editor.view.editor.EditorPanelDesigner;
+import com.keresman.editor.view.projects.ProjectTreePanelDesigner;
+import com.keresman.editor.view.welcome.WelcomePanelFormDesigner;
 import com.keresman.enums.EditOptions;
+import com.keresman.enums.StringConstants;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
@@ -21,9 +22,11 @@ import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerDesigner {
 
+    private static final String WELCOME = "Welcome";
+    private static final String PROJECTS = "Projects";
+    private static final String NEW_FILE = "New file";
+
     private ActionMap actionMap = tpCenter.getActionMap();
-    private Optional<File> selectedFile = Optional.empty();
-    private boolean isEdited = false;
 
     public EditorManager() {
         super();
@@ -78,15 +81,17 @@ public class EditorManager extends EditorManagerDesigner {
         menuEdit.add(selectAllMenuItem);
     }
 
+    private void initPanels() {
+        tpLeft.add(PROJECTS, new ProjectTreePanelDesigner());
+        tpCenter.add(WELCOME, new WelcomePanelFormDesigner());
+    }
+
     @Override
     public void miNewActionPerformed(ActionEvent evt) {
-        if (isEdited) {
-            miSaveAs.doClick();
-        }
+        EditorPanelDesigner editorPanel = new EditorPanelDesigner();
+        editorPanel.setContent(StringConstants.EMPTY.value());
 
-        //tpCenter.setText(StringConstants.EMPTY.value());
-        isEdited = false;
-        selectedFile = Optional.empty();
+        tpCenter.add(NEW_FILE, editorPanel);
     }
 
     @Override
@@ -102,22 +107,26 @@ public class EditorManager extends EditorManagerDesigner {
                 editorPanel.setContent(optFileContent.get());
                 tpCenter.add(optFile.get().getName(), editorPanel);
                 tpCenter.setSelectedComponent(editorPanel);
-                isEdited = true;
-                selectedFile = Optional.empty();
             }
         }
     }
 
     @Override
     public void miSaveActionPerformed(ActionEvent evt) {
-        //selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
-        isEdited = false;
+        Component selectedComponent = tpCenter.getSelectedComponent();
+
+        if (selectedComponent instanceof EditorPanelDesigner editor) {
+            FileUtils.saveText(editor.getContent(), Optional.empty());
+        }
     }
 
     @Override
     public void miSaveAsActionPerformed(ActionEvent evt) {
-        //selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
-        isEdited = false;
+        Component selectedComponent = tpCenter.getSelectedComponent();
+
+        if (selectedComponent instanceof EditorPanelDesigner editor) {
+            FileUtils.saveText(editor.getContent(), Optional.empty());
+        }
     }
 
     @Override
@@ -134,10 +143,7 @@ public class EditorManager extends EditorManagerDesigner {
 
     @Override
     public void miExitActionPerformed(ActionEvent evt) {
-        if (isEdited) {
-            miSaveAs.doClick();
-        }
-
+        miSave.doClick();
         dispose();
     }
 
@@ -146,9 +152,4 @@ public class EditorManager extends EditorManagerDesigner {
         MessageUtils.showInformationMessage("JEditor, Version 0.1");
     }
 
-    private void initPanels() {
-        tpLeft.add("Projects", new ProjectTreePanelDesigner());
-        tpCenter.add("Welcome", new WelcomePanelFormDesigner());
-        tpCenter.add("Edit example", new EditorPanelDesigner());
-    }
 }

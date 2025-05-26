@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.keresman.editor.view;
+package com.keresman.editor.view.projects;
 
 import com.keresman.editor.model.FileTreeModel;
 import java.awt.Component;
@@ -116,12 +116,8 @@ public class ProjectTreePanelDesigner extends javax.swing.JPanel {
     }
 
     private void setTreeModel(File root, File targetFile) {
-        EventQueue.invokeLater(() -> {
-            trProjects.setModel(new FileTreeModel(root, targetFile));
-            for (int i = 0; i < trProjects.getRowCount(); i++) {
-                trProjects.expandRow(i);
-            }
-        });
+        EventQueue.invokeLater(
+                () ->  trProjects.setModel(new FileTreeModel(root, targetFile)));
     }
 
 

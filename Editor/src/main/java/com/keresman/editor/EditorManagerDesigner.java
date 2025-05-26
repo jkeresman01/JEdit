@@ -76,7 +76,7 @@ abstract class EditorManagerDesigner extends JFrame {
         menuFile.add(miNew);
 
         miOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        miOpen.setText("Open");
+        miOpen.setText("Open Project");
         miOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miOpenActionPerformed(evt);
