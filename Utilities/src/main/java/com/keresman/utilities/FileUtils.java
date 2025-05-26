@@ -64,19 +64,35 @@ public final class FileUtils {
     public static Optional<File> uploadFile(String description, String... extensions) {
         JFileChooser chooser = createFileChooser(description, Optional.of(UPLOAD), extensions);
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = chooser.getSelectedFile();
-
-            String extension = selectedFile.getName()
-                    .substring(selectedFile.getName().lastIndexOf(".") + 1);
-
-            boolean hasCorrectExtension = List.of(extensions).contains(extension.toLowerCase());
-            boolean isFileValid = selectedFile.exists() && hasCorrectExtension;
-
-            return isFileValid ? Optional.of(selectedFile) : Optional.empty();
+        if (!userSelectedFile(chooser)) {
+            return Optional.empty();
         }
 
-        return Optional.empty();
+        File selectedFile = chooser.getSelectedFile();
+
+        return isFileValid(selectedFile, extensions)
+                ? Optional.of(selectedFile)
+                : Optional.empty();
+    }
+
+    private static boolean userSelectedFile(JFileChooser chooser) {
+        return chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION;
+    }
+
+    private static boolean isFileValid(File file, String... allowedExtensions) {
+        return file.exists() && hasAllowedExtension(file, allowedExtensions);
+    }
+
+    private static boolean hasAllowedExtension(File file, String... allowedExtensions) {
+        String name = file.getName();
+        int lastDot = name.lastIndexOf(".");
+
+        if (lastDot == -1 || lastDot == name.length() - 1) {
+            return false;
+        }
+
+        String extension = name.substring(lastDot + 1).toLowerCase();
+        return List.of(allowedExtensions).contains(extension);
     }
 
     /**
@@ -91,25 +107,28 @@ public final class FileUtils {
     public static Optional<String> loadText() {
         JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = chooser.getSelectedFile();
-
-            if (!selectedFile.exists()) {
-                MessageUtils.showErrorMessage("No such file: %s".formatted(selectedFile.getAbsoluteFile()));
-                return Optional.empty();
-            }
-
-            StringBuilder fileText = new StringBuilder();
-
-            ExceptionUtils.executeUnchecked(
-                    () -> fileText.append(Files.readString(selectedFile.toPath())),
-                    "Failed to read file: %s".formatted(selectedFile.getAbsolutePath())
-            );
-
-            return Optional.of(fileText.toString());
+        if (!userSelectedFile(chooser)) {
+            return Optional.empty();
         }
 
-        return Optional.empty();
+        File selectedFile = chooser.getSelectedFile();
+
+        if (!selectedFile.exists()) {
+            MessageUtils.showErrorMessage("No such file: %s".formatted(selectedFile.getAbsolutePath()));
+            return Optional.empty();
+        }
+
+        return Optional.of(readFileContent(selectedFile));
+    }
+
+    private static String readFileContent(File file) {
+        StringBuilder fileText = new StringBuilder();
+        ExceptionUtils.executeUnchecked(
+                () -> fileText.append(Files.readString(file.toPath())),
+                "Failed to read file: %s".formatted(file.getAbsolutePath())
+        );
+
+        return fileText.toString();
     }
 
     /**
