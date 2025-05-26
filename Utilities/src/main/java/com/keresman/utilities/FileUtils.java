@@ -131,8 +131,7 @@ public final class FileUtils {
 
         selectedFile.ifPresent(file -> ExceptionUtils.executeUnchecked(
                 () -> Files.writeString(file.toPath(), text),
-                "Failed to write to file: ".formatted(file.getAbsolutePath())
-        )
+                "Failed to write to file: %s".formatted(file.getAbsolutePath()))
         );
 
         return selectedFile;
