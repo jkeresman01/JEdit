@@ -12,7 +12,7 @@ import com.keresman.exceptions.ThrowingExceptionTask;
  */
 public final class ExceptionUtils {
 
-    public ExceptionUtils() {
+    private ExceptionUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
     }
 
