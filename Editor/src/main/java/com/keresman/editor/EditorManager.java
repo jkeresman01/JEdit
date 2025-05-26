@@ -1,6 +1,7 @@
 package com.keresman.editor;
 
 import com.keresman.enums.EditOptions;
+import com.keresman.enums.StringConstants;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
@@ -9,10 +10,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
-import java.io.IOException;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ActionMap;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -20,11 +18,12 @@ import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerDesigner {
 
+    private ActionMap actionMap = tpContent.getActionMap();
     private Optional<File> selectedFile = Optional.empty();
     private boolean isEdited = false;
 
     public EditorManager() {
-        initComponents();
+        super();
         initEditMenu();
     }
 
@@ -36,8 +35,6 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initCutMenuItem() {
-        ActionMap actionMap = tpContent.getActionMap();
-        
         JMenuItem cutMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.cutAction),
                 EditOptions.CUT,
@@ -48,8 +45,6 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initPasteMenuItem() {
-        ActionMap actionMap = tpContent.getActionMap();
-        
         JMenuItem pasteMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.pasteAction),
                 EditOptions.PASTE,
@@ -60,8 +55,6 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initCopyMenuItem() {
-        ActionMap actionMap = tpContent.getActionMap();
-        
         JMenuItem copyMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.copyAction),
                 EditOptions.COPY,
@@ -72,8 +65,6 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initSelectAllMenuItem() {
-        ActionMap actionMap = tpContent.getActionMap();
-        
         JMenuItem selectAllMenuItem = MenuUtils.createMenuItem(
                 actionMap.get(DefaultEditorKit.selectAllAction),
                 EditOptions.SELECT_ALL,
@@ -89,44 +80,32 @@ public class EditorManager extends EditorManagerDesigner {
             miSaveAs.doClick();
         }
 
-        tpContent.setText("");
+        tpContent.setText(StringConstants.EMPTY.value());
         isEdited = false;
         selectedFile = Optional.empty();
     }
 
     @Override
     public void miOpenActionPerformed(ActionEvent evt) {
-        try {
-            Optional<String> optText = FileUtils.loadText();
+        Optional<String> optText = FileUtils.loadText();
 
-            if (optText.isPresent()) {
-                tpContent.setText(optText.get());
-                isEdited = true;
-                selectedFile = Optional.empty();
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
+        if (optText.isPresent()) {
+            tpContent.setText(optText.get());
+            isEdited = true;
+            selectedFile = Optional.empty();
         }
     }
 
     @Override
     public void miSaveActionPerformed(ActionEvent evt) {
-        try {
-            selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
-            isEdited = false;
-        } catch (IOException ex) {
-            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
+        isEdited = false;
     }
 
     @Override
     public void miSaveAsActionPerformed(ActionEvent evt) {
-        try {
-            selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
-            isEdited = false;
-        } catch (IOException ex) {
-            Logger.getLogger(EditorManagerDesigner.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
+        isEdited = false;
     }
 
     @Override

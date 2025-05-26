@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "keresman",
+    "JEditor",
+    "UIUtils",
+    "LSP",
+    "DAP"
+  ],
+  "ignorePaths": [
+    "target",
+    "node_modules",
+    "**/*.class",
+    "**/*.jar"
+  ],
+  "dictionaries": ["softwareTerms", "java"]
+}
+

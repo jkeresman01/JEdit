@@ -32,7 +32,7 @@ abstract class EditorManagerDesigner extends JFrame {
     // End of variables declaration//GEN-END:variables
 
     EditorManagerDesigner() {
-        //package scoped, only Edito Manager can do
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")

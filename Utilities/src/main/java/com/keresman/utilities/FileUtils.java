@@ -87,9 +87,8 @@ public final class FileUtils {
      * valid file is selected and read successfully; otherwise, an empty
      * {@code Optional}
      *
-     * @throws IOException if an I/O error occurs while reading the file
      */
-    public static Optional<String> loadText() throws IOException {
+    public static Optional<String> loadText() {
         JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -100,8 +99,14 @@ public final class FileUtils {
                 return Optional.empty();
             }
 
-            String fileText = Files.readString(selectedFile.toPath());
-            return Optional.of(fileText);
+            StringBuilder fileText = new StringBuilder();
+
+            ExceptionUtils.executeUnchecked(
+                    () -> fileText.append(Files.readString(selectedFile.toPath())),
+                    "Failed to read file: %s".formatted(selectedFile.getAbsolutePath())
+            );
+
+            return Optional.of(fileText.toString());
         }
 
         return Optional.empty();
@@ -118,38 +123,37 @@ public final class FileUtils {
      * @return an {@code Optional<File>} containing the file that was written
      * to, or empty if the operation was cancelled or failed
      *
-     * @throws IOException if an I/O error occurs during writing
      */
-    public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
-        if (optFile.isEmpty()) {
-            optFile = selectFileToWrite();
-            writeToFile(optFile.get(), text);
-        } else {
-            Files.writeString(optFile.get().toPath(), text);
-        }
+    public static Optional<File> saveText(String text, Optional<File> optFile) {
+        Optional<File> selectedFile = optFile.isEmpty()
+                ? selectFileToWrite().map(file -> concatExtension(file, TXT_EXTENSION))
+                : optFile;
 
-        return optFile;
+        selectedFile.ifPresent(file -> ExceptionUtils.executeUnchecked(
+                () -> Files.writeString(file.toPath(), text),
+                "Failed to write to file: ".formatted(file.getAbsolutePath())
+        )
+        );
+
+        return selectedFile;
     }
 
-    private static Optional<File> selectFileToWrite() throws IOException {
+    private static Optional<File> selectFileToWrite() {
         JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.of(SAVE), TXT_EXTENSION);
+        boolean isFileSelected = chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION;
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = chooser.getSelectedFile();
-            return Optional.of(selectedFile);
-        }
-
-        return Optional.empty();
+        return isFileSelected ? Optional.of(chooser.getSelectedFile()) : Optional.empty();
     }
 
-    private static void writeToFile(File file, String text) throws IOException {
+    private static File concatExtension(File file, String ext) {
         String fileName = file.getName();
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-        if (TXT_EXTENSION.equals(extension)) {
-            file = new File(file.toString().concat(".").concat(TXT_EXTENSION));
-            Files.writeString(file.toPath(), text);
+        if (ext.equals(extension)) {
+            file = new File(file.toString().concat(".").concat(ext));
         }
+
+        return file;
     }
 
     private static JFileChooser createFileChooser(
