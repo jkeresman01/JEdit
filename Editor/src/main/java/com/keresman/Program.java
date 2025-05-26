@@ -5,7 +5,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.keresman.utilities.UIUtils;
 import java.awt.EventQueue;
 
-public class JEditor {
+public class Program {
 
     public static void main(String args[]) {
         UIUtils.setLookAndFeel(new FlatDarculaLaf());
