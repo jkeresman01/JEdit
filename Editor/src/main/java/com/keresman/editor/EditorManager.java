@@ -1,10 +1,13 @@
 package com.keresman.editor;
 
+import com.keresman.editor.view.EditorPanelDesigner;
+import com.keresman.editor.view.ProjectTreePanelDesigner;
+import com.keresman.editor.view.WelcomePanelFormDesigner;
 import com.keresman.enums.EditOptions;
-import com.keresman.enums.StringConstants;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -18,13 +21,14 @@ import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerDesigner {
 
-    private ActionMap actionMap = tpContent.getActionMap();
+    private ActionMap actionMap = tpCenter.getActionMap();
     private Optional<File> selectedFile = Optional.empty();
     private boolean isEdited = false;
 
     public EditorManager() {
         super();
         initEditMenu();
+        initPanels();
     }
 
     private void initEditMenu() {
@@ -80,17 +84,18 @@ public class EditorManager extends EditorManagerDesigner {
             miSaveAs.doClick();
         }
 
-        tpContent.setText(StringConstants.EMPTY.value());
+        //tpCenter.setText(StringConstants.EMPTY.value());
         isEdited = false;
         selectedFile = Optional.empty();
     }
 
     @Override
     public void miOpenActionPerformed(ActionEvent evt) {
-        Optional<String> optText = FileUtils.loadText();
+        Optional<File> optFile = FileUtils.selectFile();
 
-        if (optText.isPresent()) {
-            tpContent.setText(optText.get());
+        if (optFile.isPresent()) {
+            tpCenter.add(optFile.get().getName(), new EditorPanelDesigner());
+//            tpCenter.add()add
             isEdited = true;
             selectedFile = Optional.empty();
         }
@@ -98,13 +103,13 @@ public class EditorManager extends EditorManagerDesigner {
 
     @Override
     public void miSaveActionPerformed(ActionEvent evt) {
-        selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
+        //selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
         isEdited = false;
     }
 
     @Override
     public void miSaveAsActionPerformed(ActionEvent evt) {
-        selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
+        //selectedFile = FileUtils.saveText(tpContent.getText(), Optional.empty());
         isEdited = false;
     }
 
@@ -134,4 +139,9 @@ public class EditorManager extends EditorManagerDesigner {
         MessageUtils.showInformationMessage("JEditor, Version 0.1");
     }
 
+    private void initPanels() {
+        tpLeft.add("Projects", new ProjectTreePanelDesigner());
+        tpCenter.add("Welcome", new WelcomePanelFormDesigner());
+        tpCenter.add("Edit example", new EditorPanelDesigner());
+    }
 }

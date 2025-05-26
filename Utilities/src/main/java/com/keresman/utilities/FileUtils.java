@@ -24,6 +24,8 @@ public final class FileUtils {
     private static final String TEXT_FILE_DOCUMENTS = "Text file";
     private static final String TXT_EXTENSION = "txt";
     private static final String SAVE = "Save";
+    private static final String OPEN_FILE = "Open file";
+    private static final String OPEN = "Open";
 
     private FileUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
@@ -49,6 +51,13 @@ public final class FileUtils {
         if (!Files.exists(Paths.get(dir))) {
             Files.createDirectories(Paths.get(dir));
         }
+    }
+
+    public static Optional<File> selectFile() {
+        JFileChooser chooser = createFileChooser(OPEN_FILE, Optional.of(OPEN), TXT_EXTENSION);
+        boolean isFileSelected = chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION;
+
+        return isFileSelected ? Optional.of(chooser.getSelectedFile()) : Optional.empty();
     }
 
     /**
@@ -123,6 +132,7 @@ public final class FileUtils {
 
     private static String readFileContent(File file) {
         StringBuilder fileText = new StringBuilder();
+
         ExceptionUtils.executeUnchecked(
                 () -> fileText.append(Files.readString(file.toPath())),
                 "Failed to read file: %s".formatted(file.getAbsolutePath())
@@ -145,7 +155,7 @@ public final class FileUtils {
      */
     public static Optional<File> saveText(String text, Optional<File> optFile) {
         Optional<File> selectedFile = optFile.isEmpty()
-                ? selectFileToWrite().map(file -> concatExtension(file, TXT_EXTENSION))
+                ? selectFile().map(file -> concatExtension(file, TXT_EXTENSION))
                 : optFile;
 
         selectedFile.ifPresent(file -> ExceptionUtils.executeUnchecked(
@@ -154,13 +164,6 @@ public final class FileUtils {
         );
 
         return selectedFile;
-    }
-
-    private static Optional<File> selectFileToWrite() {
-        JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.of(SAVE), TXT_EXTENSION);
-        boolean isFileSelected = chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION;
-
-        return isFileSelected ? Optional.of(chooser.getSelectedFile()) : Optional.empty();
     }
 
     private static File concatExtension(File file, String ext) {

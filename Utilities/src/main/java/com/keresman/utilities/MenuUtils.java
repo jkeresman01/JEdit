@@ -17,7 +17,6 @@ public final class MenuUtils {
 
     private MenuUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
-
     }
 
     public static JMenuItem createMenuItem(

@@ -7,14 +7,9 @@ abstract class EditorManagerDesigner extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JMenuBar jMenuBar1;
-    protected javax.swing.JPanel jPanel2;
-    protected javax.swing.JPanel jPanel3;
-    protected javax.swing.JScrollPane jScrollPane1;
-    protected javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JPopupMenu.Separator jSeparator2;
     protected javax.swing.JPopupMenu.Separator jSeparator3;
-    protected javax.swing.JTree jTree1;
     protected javax.swing.JMenu menuEdit;
     protected javax.swing.JMenu menuFile;
     protected javax.swing.JMenu menuHelp;
@@ -28,7 +23,8 @@ abstract class EditorManagerDesigner extends JFrame {
     protected javax.swing.JMenuItem miPrint;
     protected javax.swing.JMenuItem miSave;
     protected javax.swing.JMenuItem miSaveAs;
-    protected javax.swing.JTextPane tpContent;
+    protected javax.swing.JTabbedPane tpCenter;
+    protected javax.swing.JTabbedPane tpLeft;
     // End of variables declaration//GEN-END:variables
 
     EditorManagerDesigner() {
@@ -37,14 +33,10 @@ abstract class EditorManagerDesigner extends JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    protected void initComponents() {
+    private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tpContent = new javax.swing.JTextPane();
+        tpLeft = new javax.swing.JTabbedPane();
+        tpCenter = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         miNew = new javax.swing.JMenuItem();
@@ -67,18 +59,9 @@ abstract class EditorManagerDesigner extends JFrame {
         setTitle("JEdit 0.1");
         setMinimumSize(new java.awt.Dimension(1280, 800));
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
-
-        jTree1.setPreferredSize(new java.awt.Dimension(200, 74));
-        jScrollPane1.setViewportView(jTree1);
-
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.LINE_START);
-
-        jScrollPane2.setViewportView(tpContent);
-
-        getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        tpLeft.setMinimumSize(new java.awt.Dimension(0, 0));
+        getContentPane().add(tpLeft, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(tpCenter, java.awt.BorderLayout.CENTER);
 
         menuFile.setMnemonic('F');
         menuFile.setText("File");
