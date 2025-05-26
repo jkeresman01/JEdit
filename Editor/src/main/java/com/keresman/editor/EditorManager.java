@@ -20,7 +20,6 @@ import javax.swing.text.DefaultEditorKit;
 
 public class EditorManager extends EditorManagerDesigner {
 
-    private ActionMap actionMap = null;
     private Optional<File> selectedFile = Optional.empty();
     private boolean isEdited = false;
 

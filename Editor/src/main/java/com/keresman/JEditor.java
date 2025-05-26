@@ -11,5 +11,4 @@ public class JEditor {
         UIUtils.setLookAndFeel(new FlatDarculaLaf());
         EventQueue.invokeLater(() -> new EditorManager().setVisible(true));
     }
-
 }

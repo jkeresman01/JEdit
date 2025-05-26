@@ -13,7 +13,7 @@ import javax.swing.KeyStroke;
  * instantiation
  *
  */
-public class MenuUtils {
+public final class MenuUtils {
 
     public MenuUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
