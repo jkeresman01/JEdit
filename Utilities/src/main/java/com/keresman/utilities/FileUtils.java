@@ -79,6 +79,16 @@ public final class FileUtils {
         return Optional.empty();
     }
 
+    /**
+     * Opens a file chooser dialog for selecting a `.txt` file and loads its
+     * contents as a string.
+     *
+     * @return an {@code Optional<String>} containing the file content if a
+     * valid file is selected and read successfully; otherwise, an empty
+     * {@code Optional}
+     *
+     * @throws IOException if an I/O error occurs while reading the file
+     */
     public static Optional<String> loadText() throws IOException {
         JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
 
@@ -88,7 +98,7 @@ public final class FileUtils {
             if (!selectedFile.exists()) {
                 MessageUtils.showErrorMessage("No such file: %s".formatted(selectedFile.getAbsoluteFile()));
                 return Optional.empty();
-            } 
+            }
 
             String fileText = Files.readString(selectedFile.toPath());
             return Optional.of(fileText);
@@ -97,6 +107,19 @@ public final class FileUtils {
         return Optional.empty();
     }
 
+    /**
+     * Saves the provided text to the specified file. If no file is provided,
+     * opens a save dialog to select a destination file.
+     *
+     * @param text the text content to save
+     * @param optFile an {@code Optional<File>} representing the file to which
+     * the text should be saved; if empty, the user is prompted to choose a file
+     *
+     * @return an {@code Optional<File>} containing the file that was written
+     * to, or empty if the operation was cancelled or failed
+     *
+     * @throws IOException if an I/O error occurs during writing
+     */
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
             optFile = selectFileToWrite(text);
@@ -108,14 +131,14 @@ public final class FileUtils {
     }
 
     private static Optional<File> selectFileToWrite(String text) throws IOException {
-        JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.empty(), TXT_EXTENSION);
+        JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.of(SAVE), TXT_EXTENSION);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
             writeToFile(selectedFile, text);
             return Optional.of(selectedFile);
         }
-        
+
         return Optional.empty();
     }
 
@@ -131,15 +154,17 @@ public final class FileUtils {
 
     private static JFileChooser createFileChooser(
             String description, Optional<String> text, String... extensions) {
+
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
         JFileChooser chooser = new JFileChooser(homeDirectory);
+        
+        chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
+        chooser.setAcceptAllFileFilterUsed(false);
 
         if (text.isPresent()) {
-            chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
             chooser.setDialogTitle(text.get());
             chooser.setApproveButtonText(text.get());
             chooser.setApproveButtonToolTipText(text.get());
-            chooser.setAcceptAllFileFilterUsed(false);
         }
 
         return chooser;
