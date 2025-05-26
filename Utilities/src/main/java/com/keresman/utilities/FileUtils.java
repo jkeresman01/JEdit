@@ -122,7 +122,8 @@ public final class FileUtils {
      */
     public static Optional<File> saveText(String text, Optional<File> optFile) throws IOException {
         if (optFile.isEmpty()) {
-            optFile = selectFileToWrite(text);
+            optFile = selectFileToWrite();
+            writeToFile(optFile.get(), text);
         } else {
             Files.writeString(optFile.get().toPath(), text);
         }
@@ -130,12 +131,11 @@ public final class FileUtils {
         return optFile;
     }
 
-    private static Optional<File> selectFileToWrite(String text) throws IOException {
+    private static Optional<File> selectFileToWrite() throws IOException {
         JFileChooser chooser = createFileChooser(TEXT_FILE_DOCUMENTS, Optional.of(SAVE), TXT_EXTENSION);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
-            writeToFile(selectedFile, text);
             return Optional.of(selectedFile);
         }
 
@@ -157,7 +157,7 @@ public final class FileUtils {
 
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
         JFileChooser chooser = new JFileChooser(homeDirectory);
-        
+
         chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
         chooser.setAcceptAllFileFilterUsed(false);
 
