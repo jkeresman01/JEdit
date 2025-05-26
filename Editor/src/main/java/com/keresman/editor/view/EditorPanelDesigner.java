@@ -32,20 +32,18 @@ public class EditorPanelDesigner extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1080, 800));
         setLayout(new java.awt.BorderLayout());
 
-        tpContent.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                tpContentComponentShown(evt);
-            }
-        });
         jScrollPane1.setViewportView(tpContent);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tpContentComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tpContentComponentShown
-        tpContent.setText("Milica je usla u sumu!!!");
-    }//GEN-LAST:event_tpContentComponentShown
-
+    public void setContent(String text) {
+        tpContent.setText(text);
+    }
+    
+    public String getContent() {
+        return this.tpContent.getText();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

@@ -94,10 +94,17 @@ public class EditorManager extends EditorManagerDesigner {
         Optional<File> optFile = FileUtils.selectFile();
 
         if (optFile.isPresent()) {
-            tpCenter.add(optFile.get().getName(), new EditorPanelDesigner());
-//            tpCenter.add()add
-            isEdited = true;
-            selectedFile = Optional.empty();
+            EditorPanelDesigner editorPanel = new EditorPanelDesigner();
+
+            Optional<String> optFileContent = FileUtils.loadText(optFile.get());
+
+            if (optFile.isPresent()) {
+                editorPanel.setContent(optFileContent.get());
+                tpCenter.add(optFile.get().getName(), editorPanel);
+                tpCenter.setSelectedComponent(editorPanel);
+                isEdited = true;
+                selectedFile = Optional.empty();
+            }
         }
     }
 

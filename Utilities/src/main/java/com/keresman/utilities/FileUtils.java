@@ -105,6 +105,29 @@ public final class FileUtils {
     }
 
     /**
+     * Loads text content from the given file.
+     *
+     * @param file the file to read
+     * @return an {@code Optional<String>} containing the file content if
+     * successful, or empty if the file doesn't exist or can't be read
+     */
+    public static Optional<String> loadText(File file) {
+        if (file == null || !file.exists()) {
+            MessageUtils.showErrorMessage("No such file: %s".formatted(file.getAbsolutePath()));
+            return Optional.empty();
+        }
+
+        StringBuilder fileText = new StringBuilder();
+
+        ExceptionUtils.executeUnchecked(
+                () -> fileText.append(Files.readString(file.toPath())),
+                "Failed to read file: %s".formatted(file.getAbsolutePath())
+        );
+
+        return Optional.of(fileText.toString());
+    }
+
+    /**
      * Opens a file chooser dialog for selecting a `.txt` file and loads its
      * contents as a string.
      *
