@@ -27,11 +27,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Exceptions</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
             <version>3.6</version>
@@ -40,11 +35,6 @@
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf-intellij-themes</artifactId>
             <version>3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Enums</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>
@@ -56,6 +46,16 @@
             <artifactId>Utilities</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.keresman</groupId>
+                    <artifactId>Enums</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.keresman</groupId>
+                    <artifactId>Exceptions</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     <properties>

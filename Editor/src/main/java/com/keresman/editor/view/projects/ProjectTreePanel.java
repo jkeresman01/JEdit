@@ -28,7 +28,7 @@ public class ProjectTreePanel extends ProjectTreePanelDesigner {
 
         Runnable task = () -> ExceptionUtils.executeUnchecked(
                 () -> findFile(System.getProperty(USER_DIR), EDITOR_PANEL_DESIGNER),
-                "Failed to find set find file, root: %s, file: %s".formatted(USER_DIR, EDITOR_PANEL_DESIGNER)
+                "Failed to find file: %s with root: %s".formatted(EDITOR_PANEL_DESIGNER, System.getProperty(USER_DIR))
         );
 
         new Thread(task, FIND_FILE_THREAD).start();
@@ -38,11 +38,11 @@ public class ProjectTreePanel extends ProjectTreePanelDesigner {
         Path rootPath = Paths.get(path);
 
         SimpleFileFinderVisitor fileFinderVisitor = new SimpleFileFinderVisitor(rootPath, filename);
-        
+
         Files.walkFileTree(rootPath, fileFinderVisitor);
 
         File foundFile = fileFinderVisitor.getResult();
-        
+
         if (foundFile != null) {
             setTreeModel(rootPath.toFile(), foundFile);
         }

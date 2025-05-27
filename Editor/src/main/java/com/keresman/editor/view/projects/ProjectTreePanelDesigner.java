@@ -33,5 +33,4 @@ public class ProjectTreePanelDesigner extends JPanel {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    
 }
