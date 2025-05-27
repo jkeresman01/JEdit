@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 
 public class WelcomePanel extends WelcomePanelDesigner {
     
-    private static final String WELCOME_TITLE = "Welcome";
-    
     private final EditorManager editorManager;
 
     public WelcomePanel(EditorManager EditorManager) {
