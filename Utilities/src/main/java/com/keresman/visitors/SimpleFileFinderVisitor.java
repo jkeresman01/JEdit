@@ -21,7 +21,9 @@ public class SimpleFileFinderVisitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-        if (path.getFileName().toString().equals(targetFileName)) {
+        boolean isFileFound = path.getFileName().toString().equals(targetFileName);
+        
+        if (isFileFound){
             result = path.toFile();
             return FileVisitResult.TERMINATE;
         }
