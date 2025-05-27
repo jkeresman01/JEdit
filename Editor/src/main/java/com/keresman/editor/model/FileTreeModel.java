@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import javax.swing.tree.TreeModel;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreePath;
 
-public class FileTreeModel extends FileTreeModelAdapter {
+public class FileTreeModel implements TreeModel {
 
     private final Map<File, List<File>> map = new HashMap<>();
     private final File root;
@@ -67,7 +70,7 @@ public class FileTreeModel extends FileTreeModelAdapter {
             for (File file : files) {
                 String targetFileAbsPath = targetFile.getAbsolutePath().toLowerCase();
                 String fileAbsPath = file.getAbsolutePath().toLowerCase();
-                
+
                 if (!targetFileAbsPath.startsWith(fileAbsPath)) {
                     children.add(file);
                 }
@@ -75,5 +78,20 @@ public class FileTreeModel extends FileTreeModelAdapter {
             map.put(parent, children);
         }
         return Optional.of(children);
+    }
+
+    @Override
+    public void addTreeModelListener(TreeModelListener l) {
+        // Not needed
+    }
+
+    @Override
+    public void removeTreeModelListener(TreeModelListener l) {
+        // Not needed
+    }
+
+    @Override
+    public void valueForPathChanged(TreePath path, Object newValue) {
+        // Not needed
     }
 }

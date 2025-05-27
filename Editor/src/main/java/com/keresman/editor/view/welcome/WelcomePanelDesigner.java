@@ -1,9 +1,9 @@
 package com.keresman.editor.view.welcome;
 
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
 
-abstract class WelcomePanelDesigner extends Panel {
+abstract class WelcomePanelDesigner extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton btnNewFile;

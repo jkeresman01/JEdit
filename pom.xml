@@ -10,6 +10,7 @@
         <module>DAP</module>
         <module>Utilities</module>
         <module>Editor</module>
+        <module>Components</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

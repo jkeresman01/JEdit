@@ -3,7 +3,9 @@ package com.keresman.editor.view.welcome;
 import com.keresman.editor.EditorManager;
 import java.awt.event.ActionEvent;
 
-public class WelcomePanel extends WelcomePanelDesigner{
+public class WelcomePanel extends WelcomePanelDesigner {
+    
+    private static final String WELCOME_TITLE = "Welcome";
     
     private final EditorManager editorManager;
 

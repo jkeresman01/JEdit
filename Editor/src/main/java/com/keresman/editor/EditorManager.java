@@ -1,5 +1,6 @@
 package com.keresman.editor;
 
+import com.keresman.components.ClosablePanel;
 import com.keresman.editor.view.edit.EditorPanel;
 import com.keresman.editor.view.projects.ProjectTreePanel;
 import com.keresman.editor.view.welcome.WelcomePanel;
@@ -15,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import javax.swing.ActionMap;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -82,16 +84,25 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initPanels() {
-        tpLeft.add(PROJECTS, new ProjectTreePanel());
-        tpCenter.add(WELCOME, new WelcomePanel(this));
+        initProjectsPanel();
+        initWelcomePanel();
+    }
+
+    private void initProjectsPanel() {
+        ProjectTreePanel projectTreePanel = new ProjectTreePanel();
+        ClosablePanel.attachTo(tpLeft, projectTreePanel, PROJECTS);
+    }
+
+    private void initWelcomePanel() {
+        WelcomePanel welcomePanel = new WelcomePanel(this);
+        ClosablePanel.attachTo(tpCenter, welcomePanel, WELCOME);
     }
 
     @Override
     public void miNewActionPerformed(ActionEvent evt) {
         EditorPanel editorPanel = new EditorPanel();
         editorPanel.setContent(StringConstants.EMPTY.value());
-
-        tpCenter.add(NEW_FILE, editorPanel);
+        ClosablePanel.attachTo(tpCenter, editorPanel, NEW_FILE);
     }
 
     @Override
@@ -104,8 +115,9 @@ public class EditorManager extends EditorManagerDesigner {
 
             if (optFileContent.isPresent()) {
                 editorPanel.setContent(optFileContent.get());
-                tpCenter.add(optFile.get().getName(), editorPanel);
+                ClosablePanel.attachTo(tpCenter, editorPanel, optFile.get().getName());
                 tpCenter.setSelectedComponent(editorPanel);
+                closeWelcomePanel();
             }
         }
     }
@@ -151,4 +163,10 @@ public class EditorManager extends EditorManagerDesigner {
         MessageUtils.showInformationMessage("JEditor, Version 0.1");
     }
 
+    private void closeWelcomePanel() {
+        IntStream.range(0, tpCenter.getTabCount())
+                .filter(i -> tpCenter.getComponentAt(i) instanceof WelcomePanel)
+                .findFirst()
+                .ifPresent(tpCenter::removeTabAt);
+    }
 }
