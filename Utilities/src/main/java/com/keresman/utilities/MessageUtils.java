@@ -31,6 +31,20 @@ public final class MessageUtils {
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
+    
+    /**
+     * Displays an information message dialog.
+     *
+     * @param message the message to display
+     */
+    public static void showInformationMessage(String title, String message) {
+        JOptionPane.showMessageDialog(
+                null,
+                message,
+                title,
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
 
     /**
      * Displays a warning message dialog.

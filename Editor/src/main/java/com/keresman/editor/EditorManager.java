@@ -1,11 +1,17 @@
 package com.keresman.editor;
 
 import com.keresman.components.ClosablePanel;
+import com.keresman.editor.events.EditorEventBusImpl;
 import com.keresman.editor.view.edit.EditorPanel;
 import com.keresman.editor.view.projects.ProjectTreePanel;
 import com.keresman.editor.view.welcome.WelcomePanel;
 import com.keresman.enums.EditOptions;
 import com.keresman.enums.StringConstants;
+import com.keresman.exceptions.ThrowingExceptionTask;
+import com.keresman.lsp.LSPConnector;
+import com.keresman.lsp.LspClientManager;
+import com.keresman.lsp.events.EditorEventBus;
+import com.keresman.utilities.ExceptionUtils;
 import com.keresman.utilities.FileUtils;
 import com.keresman.utilities.MenuUtils;
 import com.keresman.utilities.MessageUtils;
@@ -15,6 +21,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterJob;
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import javax.swing.ActionMap;
@@ -28,15 +35,20 @@ public class EditorManager extends EditorManagerDesigner {
     private static final String PROJECTS = "Projects";
     private static final String NEW_FILE = "New file";
 
+    private final EditorEventBus eventBus = new EditorEventBusImpl();
+
+    private LSPConnector lspConnector;
+    private LspClientManager lspClientManager;
     private ActionMap actionMap = tpCenter.getActionMap();
 
     public EditorManager() {
         super();
-        initEditMenu();
+        initMenus();
         initPanels();
+//        initLSP(); 
     }
 
-    private void initEditMenu() {
+    private void initMenus() {
         initCutMenuItem();
         initPasteMenuItem();
         initCopyMenuItem();
@@ -96,6 +108,20 @@ public class EditorManager extends EditorManagerDesigner {
     private void initWelcomePanel() {
         WelcomePanel welcomePanel = new WelcomePanel(this);
         ClosablePanel.attachTo(tpCenter, welcomePanel, WELCOME);
+    }
+
+    private void initLSP() {
+        lspConnector = new LSPConnector(eventBus);
+
+        ThrowingExceptionTask<IOException> throwingEceExceptionTask = () -> {
+            lspConnector.start("java", "-jar", "dummy-jlang-server.jar");
+            lspClientManager = new LspClientManager(lspConnector.getLanguageServer());
+        };
+
+        ExceptionUtils.executeUnchecked(
+                throwingEceExceptionTask,
+                "No can do, initliazation of LSP server has failed!"
+        );
     }
 
     @Override
