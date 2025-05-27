@@ -46,6 +46,7 @@ public class EditorManager extends EditorManagerDesigner {
         initMenus();
         initPanels();
 //        initLSP(); 
+//TODO -> fix gazilion bugs
     }
 
     private void initMenus() {
@@ -126,7 +127,7 @@ public class EditorManager extends EditorManagerDesigner {
 
     @Override
     public void miNewActionPerformed(ActionEvent evt) {
-        EditorPanel editorPanel = new EditorPanel(Optional.empty());
+        EditorPanel editorPanel = new EditorPanel(Optional.empty(), lspClientManager);
         editorPanel.setContent(StringConstants.EMPTY.value());
         ClosablePanel.attachTo(tpCenter, editorPanel, NEW_FILE);
     }
@@ -136,7 +137,7 @@ public class EditorManager extends EditorManagerDesigner {
         Optional<File> optFile = FileUtils.selectFile();
 
         if (optFile.isPresent()) {
-            EditorPanel editorPanel = new EditorPanel(optFile);
+            EditorPanel editorPanel = new EditorPanel(optFile, lspClientManager);
             Optional<String> optFileContent = FileUtils.loadText(optFile.get());
 
             if (optFileContent.isPresent()) {

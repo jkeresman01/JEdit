@@ -2,6 +2,7 @@ package com.keresman.editor.view.edit;
 
 import com.keresman.editor.listeners.EditorDocumentHighlightListener;
 import com.keresman.jlang.highlight.SyntaxHighlighter;
+import com.keresman.lsp.LspClientManager;
 import com.keresman.utilities.FileUtils;
 import java.io.File;
 import java.util.Optional;
@@ -10,18 +11,34 @@ import javax.swing.text.Document;
 public class EditorPanel extends EditorPanelDesigner {
 
     private static final String JLANG_EXTENSION = "j";
-
-    public EditorPanel(Optional<File> file) {
+    private final LspClientManager lspClientManager;
+    
+    public EditorPanel(Optional<File> file, LspClientManager lspClientManager) {
         super();
-        init(file);
+        this.lspClientManager = lspClientManager;
+        initListeners(file);
     }
 
-    private void init(Optional<File> file) {
+    private void initListeners(Optional<File> file) {
         Document document = tpContent.getDocument();
 
         if (file.isPresent() && FileUtils.hasExtension(file.get(), JLANG_EXTENSION)) {
-            SyntaxHighlighter highlighter = new SyntaxHighlighter(tpContent);
-            document.addDocumentListener(new EditorDocumentHighlightListener(tpContent, highlighter));
+            document.addDocumentListener(
+                    new EditorDocumentHighlightListener(tpContent, new SyntaxHighlighter(tpContent))
+            );
+
+            /////////////////////////////////////////////////////////////////////////////////////////
+            //
+            //    ----------------------          TODO             ----------------------------
+            //    ----------------------          TODO             ----------------------------
+            //
+            //
+            //document.addDocumentListener(
+            //        new LspDocumentListener(file.get().getAbsolutePath(), lspClientManager)
+            //);
+            //
+            /////////////////////////////////////////////////////////////////////////////////////////
+
         }
     }
 

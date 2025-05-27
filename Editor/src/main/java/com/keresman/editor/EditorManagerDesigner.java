@@ -23,6 +23,8 @@ abstract class EditorManagerDesigner extends JFrame {
     protected javax.swing.JMenuItem miPrint;
     protected javax.swing.JMenuItem miSave;
     protected javax.swing.JMenuItem miSaveAs;
+    protected javax.swing.JCheckBoxMenuItem miViewConsole;
+    protected javax.swing.JCheckBoxMenuItem miViewProjects;
     protected javax.swing.JTabbedPane tpCenter;
     protected javax.swing.JTabbedPane tpLeft;
     // End of variables declaration//GEN-END:variables
@@ -51,6 +53,8 @@ abstract class EditorManagerDesigner extends JFrame {
         miExit = new javax.swing.JMenuItem();
         menuEdit = new javax.swing.JMenu();
         menuView = new javax.swing.JMenu();
+        miViewProjects = new javax.swing.JCheckBoxMenuItem();
+        miViewConsole = new javax.swing.JCheckBoxMenuItem();
         menuOptions = new javax.swing.JMenu();
         menuHelp = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
@@ -137,6 +141,25 @@ abstract class EditorManagerDesigner extends JFrame {
 
         menuView.setMnemonic('V');
         menuView.setText("View");
+
+        miViewProjects.setSelected(true);
+        miViewProjects.setText("Projects");
+        miViewProjects.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miViewProjectsActionPerformed(evt);
+            }
+        });
+        menuView.add(miViewProjects);
+
+        miViewConsole.setSelected(true);
+        miViewConsole.setText("Console");
+        miViewConsole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miViewConsoleActionPerformed(evt);
+            }
+        });
+        menuView.add(miViewConsole);
+
         jMenuBar1.add(menuView);
 
         menuOptions.setMnemonic('O');
@@ -161,6 +184,10 @@ abstract class EditorManagerDesigner extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public abstract void miViewProjectsActionPerformed(ActionEvent evt);
+
+    public abstract void miViewConsoleActionPerformed(ActionEvent evt);
 
     public abstract void miNewActionPerformed(ActionEvent evt);
 
