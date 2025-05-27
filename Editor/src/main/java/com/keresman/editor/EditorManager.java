@@ -100,7 +100,7 @@ public class EditorManager extends EditorManagerDesigner {
 
     @Override
     public void miNewActionPerformed(ActionEvent evt) {
-        EditorPanel editorPanel = new EditorPanel();
+        EditorPanel editorPanel = new EditorPanel(Optional.empty());
         editorPanel.setContent(StringConstants.EMPTY.value());
         ClosablePanel.attachTo(tpCenter, editorPanel, NEW_FILE);
     }
@@ -110,7 +110,7 @@ public class EditorManager extends EditorManagerDesigner {
         Optional<File> optFile = FileUtils.selectFile();
 
         if (optFile.isPresent()) {
-            EditorPanel editorPanel = new EditorPanel();
+            EditorPanel editorPanel = new EditorPanel(optFile);
             Optional<String> optFileContent = FileUtils.loadText(optFile.get());
 
             if (optFileContent.isPresent()) {

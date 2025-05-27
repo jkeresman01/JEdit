@@ -62,6 +62,11 @@
             <artifactId>Components</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.keresman.jlang</groupId>
+            <artifactId>Jlang</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>20</maven.compiler.source>

@@ -22,7 +22,7 @@ public final class FileUtils {
 
     private static final String UPLOAD = "Upload";
     private static final String TEXT_FILE_DOCUMENTS = "Text file";
-    private static final String TXT_EXTENSION = "txt";
+    private static final String TXT_EXTENSION = "j";
     private static final String SAVE = "Save";
     private static final String OPEN_FILE = "Open file";
     private static final String OPEN = "Open";
@@ -89,10 +89,14 @@ public final class FileUtils {
     }
 
     private static boolean isFileValid(File file, String... allowedExtensions) {
-        return file.exists() && hasAllowedExtension(file, allowedExtensions);
+        return file.exists() && hasExtension(file, allowedExtensions);
     }
 
-    private static boolean hasAllowedExtension(File file, String... allowedExtensions) {
+    public static boolean hasExtension(File file, String... allowedExtensions) {
+        if (file == null || allowedExtensions == null || allowedExtensions.length == 0) {
+            return false;
+        }
+        
         String name = file.getName();
         int lastDot = name.lastIndexOf(".");
 
