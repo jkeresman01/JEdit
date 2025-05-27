@@ -100,10 +100,9 @@ public class EditorManager extends EditorManagerDesigner {
 
         if (optFile.isPresent()) {
             EditorPanelDesigner editorPanel = new EditorPanelDesigner();
-
             Optional<String> optFileContent = FileUtils.loadText(optFile.get());
 
-            if (optFile.isPresent()) {
+            if (optFileContent.isPresent()) {
                 editorPanel.setContent(optFileContent.get());
                 tpCenter.add(optFile.get().getName(), editorPanel);
                 tpCenter.setSelectedComponent(editorPanel);
