@@ -9,10 +9,7 @@ public class EditorEventBusImpl implements EditorEventBus {
 
     @Override
     public void onDiagnostics(PublishDiagnosticsParams params) {
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        SwingUtilities.invokeLater(
-                () -> MessageUtils.showWarningMessage(params.getDiagnostics().toString())
-        );
+        SwingUtilities.invokeLater(() -> MessageUtils.showWarningMessage(params.getDiagnostics().toString()));
     }
 
     @Override
