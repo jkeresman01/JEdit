@@ -19,14 +19,10 @@ public class SimpleFileFinderVisitor extends SimpleFileVisitor<Path> {
         this.targetFileName = targetFileName;
     }
 
-    public File getResult() {
-        return result;
-    }
-
     @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-        if (file.getFileName().toString().equals(targetFileName)) {
-            result = file.toFile();
+    public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+        if (path.getFileName().toString().equals(targetFileName)) {
+            result = path.toFile();
             return FileVisitResult.TERMINATE;
         }
         return FileVisitResult.CONTINUE;
@@ -37,5 +33,9 @@ public class SimpleFileFinderVisitor extends SimpleFileVisitor<Path> {
         return (exc instanceof AccessDeniedException)
                 ? FileVisitResult.SKIP_SUBTREE
                 : FileVisitResult.CONTINUE;
+    }
+
+    public File getResult() {
+        return this.result;
     }
 }
