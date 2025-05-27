@@ -1,8 +1,8 @@
 package com.keresman.editor;
 
-import com.keresman.editor.view.edit.EditorPanelDesigner;
-import com.keresman.editor.view.projects.ProjectTreePanelDesigner;
-import com.keresman.editor.view.welcome.WelcomePanelFormDesigner;
+import com.keresman.editor.view.edit.EditorPanel;
+import com.keresman.editor.view.projects.ProjectTreePanel;
+import com.keresman.editor.view.welcome.WelcomePanel;
 import com.keresman.enums.EditOptions;
 import com.keresman.enums.StringConstants;
 import com.keresman.utilities.FileUtils;
@@ -82,13 +82,13 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void initPanels() {
-        tpLeft.add(PROJECTS, new ProjectTreePanelDesigner());
-        tpCenter.add(WELCOME, new WelcomePanelFormDesigner());
+        tpLeft.add(PROJECTS, new ProjectTreePanel());
+        tpCenter.add(WELCOME, new WelcomePanel(this));
     }
 
     @Override
     public void miNewActionPerformed(ActionEvent evt) {
-        EditorPanelDesigner editorPanel = new EditorPanelDesigner();
+        EditorPanel editorPanel = new EditorPanel();
         editorPanel.setContent(StringConstants.EMPTY.value());
 
         tpCenter.add(NEW_FILE, editorPanel);
@@ -99,7 +99,7 @@ public class EditorManager extends EditorManagerDesigner {
         Optional<File> optFile = FileUtils.selectFile();
 
         if (optFile.isPresent()) {
-            EditorPanelDesigner editorPanel = new EditorPanelDesigner();
+            EditorPanel editorPanel = new EditorPanel();
             Optional<String> optFileContent = FileUtils.loadText(optFile.get());
 
             if (optFileContent.isPresent()) {
@@ -114,7 +114,7 @@ public class EditorManager extends EditorManagerDesigner {
     public void miSaveActionPerformed(ActionEvent evt) {
         Component selectedComponent = tpCenter.getSelectedComponent();
 
-        if (selectedComponent instanceof EditorPanelDesigner editor) {
+        if (selectedComponent instanceof EditorPanel editor) {
             FileUtils.saveText(editor.getContent(), Optional.empty());
         }
     }
@@ -123,7 +123,7 @@ public class EditorManager extends EditorManagerDesigner {
     public void miSaveAsActionPerformed(ActionEvent evt) {
         Component selectedComponent = tpCenter.getSelectedComponent();
 
-        if (selectedComponent instanceof EditorPanelDesigner editor) {
+        if (selectedComponent instanceof EditorPanel editor) {
             FileUtils.saveText(editor.getContent(), Optional.empty());
         }
     }
