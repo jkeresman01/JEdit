@@ -23,6 +23,8 @@ Simple Java-based code editor with toy Language Server Protocol (LSP) and Debug 
 
 ## Project structure:
 
+
+
 ```
 JEdit/                                    # Maven aggregator
 ├── Components/                           # Reusable components
@@ -64,9 +66,3 @@ JEdit/                                    # Maven aggregator
 ├── pom.xml                               # Parent Maven POM
 └── README.md
 
-
-```bash
-cd Editor
-mvn clean install
-mvn exec:java -Dexec.mainClass="com.keresman.editor.Main"
-```
