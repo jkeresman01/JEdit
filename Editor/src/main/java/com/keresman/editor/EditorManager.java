@@ -23,7 +23,6 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.stream.IntStream;
 import javax.swing.ActionMap;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -114,13 +113,13 @@ public class EditorManager extends EditorManagerDesigner {
     private void initLSP() {
         lspConnector = new LSPConnector(eventBus);
 
-        ThrowingExceptionTask<IOException> throwingEceExceptionTask = () -> {
+        ThrowingExceptionTask<IOException> throwingExceptionTask = () -> {
             lspConnector.start("java", "-jar", "dummy-jlang-server.jar");
             lspClientManager = new LspClientManager(lspConnector.getLanguageServer());
         };
 
         ExceptionUtils.executeUnchecked(
-                throwingEceExceptionTask,
+                throwingExceptionTask,
                 "No can do, initliazation of LSP server has failed!"
         );
     }
@@ -191,9 +190,21 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     private void closeWelcomePanel() {
-        IntStream.range(0, tpCenter.getTabCount())
-                .filter(i -> tpCenter.getComponentAt(i) instanceof WelcomePanel)
-                .findFirst()
-                .ifPresent(tpCenter::removeTabAt);
+        for (int i = 0; i < tpCenter.getTabCount(); ++i) {
+            if (tpCenter.getComponentAt(i) instanceof WelcomePanel) {
+                tpCenter.removeTabAt(i);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void miViewProjectsActionPerformed(ActionEvent evt) {
+        //TODO
+    }
+
+    @Override
+    public void miViewConsoleActionPerformed(ActionEvent evt) {
+        //TODO
     }
 }

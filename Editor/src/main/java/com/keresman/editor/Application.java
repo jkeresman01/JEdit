@@ -1,14 +1,14 @@
-package com.keresman;
+package com.keresman.editor;
 
-import com.keresman.editor.EditorManager;
+import static com.keresman.utilities.UIUtils.setLookAndFeel;
+
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.keresman.utilities.UIUtils;
 import java.awt.EventQueue;
 
 public class Application {
 
     public static void main(String args[]) {
-        UIUtils.setLookAndFeel(new FlatDarculaLaf());
+        setLookAndFeel(new FlatDarculaLaf());
         EventQueue.invokeLater(() -> new EditorManager().setVisible(true));
     }
 }

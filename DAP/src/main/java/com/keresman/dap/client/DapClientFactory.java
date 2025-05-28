@@ -5,7 +5,6 @@ import com.keresman.exceptions.ThrowingExceptionTask;
 import com.keresman.utilities.ExceptionUtils;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +46,7 @@ public class DapClientFactory {
 
         return instance;
     }
-
+    
     private static IDebugProtocolClient createInstance(DebugEventBus eventBus) {
 
         ThrowingExceptionTask<Exception> task = () -> {
