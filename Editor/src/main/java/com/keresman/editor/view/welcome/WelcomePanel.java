@@ -1,6 +1,7 @@
 package com.keresman.editor.view.welcome;
 
-import com.keresman.editor.EditorManager;
+import com.keresman.editor.view.welcome.designer.WelcomePanelDesigner;
+import com.keresman.editor.view.app.EditorManager;
 import java.awt.event.ActionEvent;
 
 public class WelcomePanel extends WelcomePanelDesigner {

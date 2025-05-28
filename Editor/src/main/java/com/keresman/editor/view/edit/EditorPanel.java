@@ -1,5 +1,6 @@
 package com.keresman.editor.view.edit;
 
+import com.keresman.editor.view.edit.designer.EditorPanelDesigner;
 import com.keresman.editor.listeners.EditorDocumentHighlightListener;
 import com.keresman.jlang.highlight.SyntaxHighlighter;
 import com.keresman.lsp.LspClientManager;

@@ -1,15 +1,15 @@
-package com.keresman.editor.view.projects;
+package com.keresman.editor.view.edit.designer;
 
 import javax.swing.JPanel;
 
-public class ProjectTreePanelDesigner extends JPanel {
+public abstract class EditorPanelDesigner extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JScrollPane jScrollPane1;
-    protected javax.swing.JTree trProjects;
+    protected javax.swing.JTextPane tpContent;
     // End of variables declaration//GEN-END:variables
 
-    ProjectTreePanelDesigner() {
+    protected EditorPanelDesigner() {
         initComponents();
     }
 
@@ -18,17 +18,12 @@ public class ProjectTreePanelDesigner extends JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        trProjects = new javax.swing.JTree();
+        tpContent = new javax.swing.JTextPane();
 
-        setPreferredSize(new java.awt.Dimension(200, 800));
+        setPreferredSize(new java.awt.Dimension(1080, 800));
         setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(240, 362));
-
-        trProjects.setModel(null);
-        trProjects.setName(""); // NOI18N
-        trProjects.setPreferredSize(new java.awt.Dimension(200, 800));
-        jScrollPane1.setViewportView(trProjects);
+        jScrollPane1.setViewportView(tpContent);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

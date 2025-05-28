@@ -1,9 +1,9 @@
-package com.keresman.editor.view.welcome;
+package com.keresman.editor.view.welcome.designer;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-abstract class WelcomePanelDesigner extends JPanel {
+public abstract class WelcomePanelDesigner extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton btnNewFile;
@@ -13,11 +13,11 @@ abstract class WelcomePanelDesigner extends JPanel {
     protected javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2;
     protected javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    protected javax.swing.JTextArea jTextArea1;
     protected javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 
-   WelcomePanelDesigner() {
+   protected WelcomePanelDesigner() {
         initComponents();
     }
 

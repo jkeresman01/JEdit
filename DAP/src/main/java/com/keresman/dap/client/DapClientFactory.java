@@ -46,7 +46,7 @@ public class DapClientFactory {
 
         return instance;
     }
-    
+
     private static IDebugProtocolClient createInstance(DebugEventBus eventBus) {
 
         ThrowingExceptionTask<Exception> task = () -> {

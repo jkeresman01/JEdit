@@ -1,5 +1,6 @@
-package com.keresman.editor;
+package com.keresman.editor.view.app;
 
+import com.keresman.editor.view.app.designer.EditorManagerDesigner;
 import com.keresman.components.ClosablePanel;
 import com.keresman.editor.events.EditorEventBusImpl;
 import com.keresman.editor.view.edit.EditorPanel;

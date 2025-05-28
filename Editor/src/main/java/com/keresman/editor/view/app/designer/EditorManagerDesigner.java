@@ -1,9 +1,9 @@
-package com.keresman.editor;
+package com.keresman.editor.view.app.designer;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
-abstract class EditorManagerDesigner extends JFrame {
+public abstract class EditorManagerDesigner extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JMenuBar jMenuBar1;
@@ -29,7 +29,7 @@ abstract class EditorManagerDesigner extends JFrame {
     protected javax.swing.JTabbedPane tpLeft;
     // End of variables declaration//GEN-END:variables
 
-    EditorManagerDesigner() {
+    protected EditorManagerDesigner() {
         initComponents();
     }
 

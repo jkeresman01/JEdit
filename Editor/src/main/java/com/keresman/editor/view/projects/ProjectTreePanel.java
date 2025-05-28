@@ -1,5 +1,6 @@
 package com.keresman.editor.view.projects;
 
+import com.keresman.editor.view.projects.designer.ProjectTreePanelDesigner;
 import com.keresman.editor.model.FileTreeModel;
 import com.keresman.utilities.ExceptionUtils;
 import com.keresman.renderers.FileTreeCellRenderer;

@@ -71,6 +71,6 @@
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
-        <exec.mainClass>com.keresman.editor.Application</exec.mainClass>
+        <exec.mainClass>com.keresman.editor.Main</exec.mainClass>
     </properties>
 </project>
