@@ -27,7 +27,7 @@ public final class LanguageClientFactory {
     }
 
     private LanguageClientFactory() {
-        // prevent instantiation
+        // Suppresses default constructor, ensuring non-instantiability.
     }
 
     public static LanguageClient getClient(EditorEventBus eventBus) {
