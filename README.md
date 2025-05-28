@@ -3,7 +3,6 @@
   <img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" height="100" alt="Java Logo" />
 
   <h1>JEdit</h1>
-  <h3>!!!!!!! Not baked yet !!!!!!!</h3>
   <h6>---> Random simple not working editor....<---</h6>
 
   ![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
@@ -18,8 +17,11 @@
   -----------------------------------------------------------------------------------------
 
 </div>
+
+<div align="center">
 Simple Java-based code editor with toy Language Server Protocol (LSP) and Debug Adapter Protocol (DAP) integration.
 
+</div>
 
 ## Project structure:
 
