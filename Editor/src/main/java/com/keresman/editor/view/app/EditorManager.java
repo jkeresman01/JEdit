@@ -29,6 +29,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
+//TODO -> fix gazilion bugs
 public class EditorManager extends EditorManagerDesigner {
 
     private static final String WELCOME = "Welcome";
@@ -45,8 +46,6 @@ public class EditorManager extends EditorManagerDesigner {
         super();
         initMenus();
         initPanels();
-//        initLSP(); 
-//TODO -> fix gazilion bugs
     }
 
     private void initMenus() {

@@ -1,4 +1,4 @@
-package com.keresman.editor.model;
+package com.keresman.editor.model.projects;
 
 import java.util.List;
 import java.io.File;

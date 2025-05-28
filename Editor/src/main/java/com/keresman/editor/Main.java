@@ -1,8 +1,8 @@
 package com.keresman.editor;
 
-import com.keresman.editor.view.app.EditorManager;
 import static com.keresman.utilities.UIUtils.setLookAndFeel;
 
+import com.keresman.editor.view.app.EditorManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.EventQueue;
 
