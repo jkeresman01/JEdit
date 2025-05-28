@@ -13,7 +13,7 @@ public class EditorPanel extends EditorPanelDesigner {
 
     private static final String JLANG_EXTENSION = "j";
     private final LspClientManager lspClientManager;
-    
+
     public EditorPanel(Optional<File> file, LspClientManager lspClientManager) {
         super();
         this.lspClientManager = lspClientManager;
@@ -21,26 +21,25 @@ public class EditorPanel extends EditorPanelDesigner {
     }
 
     private void initListeners(Optional<File> file) {
-        Document document = tpContent.getDocument();
 
-        if (file.isPresent() && FileUtils.hasExtension(file.get(), JLANG_EXTENSION)) {
-            document.addDocumentListener(
-                    new EditorDocumentHighlightListener(tpContent, new SyntaxHighlighter(tpContent))
-            );
-
-            /////////////////////////////////////////////////////////////////////////////////////////
-            //
-            //    ----------------------          TODO             ----------------------------
-            //    ----------------------          TODO             ----------------------------
-            //
-            //
-            //document.addDocumentListener(
-            //        new LspDocumentListener(file.get().getAbsolutePath(), lspClientManager)
-            //);
-            //
-            /////////////////////////////////////////////////////////////////////////////////////////
-
+        boolean isValidJlangFile = 
+                file.isPresent() && FileUtils.hasExtension(file.get(), JLANG_EXTENSION);
+        
+        if (isValidJlangFile) {
+            addDocumentListenres(file.get());
         }
+    }
+
+    private void addDocumentListenres(File file) {
+        Document document = tpContent.getDocument();
+        
+        document.addDocumentListener(
+                new EditorDocumentHighlightListener(tpContent, new SyntaxHighlighter(tpContent))
+        );
+
+//        document.addDocumentListener(
+//                new LspDocumentListener(file.getAbsolutePath(), lspClientManager)
+//        );
     }
 
     public void setContent(String text) {
