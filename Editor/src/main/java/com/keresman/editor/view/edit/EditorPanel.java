@@ -26,11 +26,11 @@ public class EditorPanel extends EditorPanelDesigner {
                 file.isPresent() && FileUtils.hasExtension(file.get(), JLANG_EXTENSION);
         
         if (isValidJlangFile) {
-            addDocumentListenres(file.get());
+            addDocumentListeners(file.get());
         }
     }
 
-    private void addDocumentListenres(File file) {
+    private void addDocumentListeners(File file) {
         Document document = tpContent.getDocument();
         
         document.addDocumentListener(
