@@ -1,5 +1,23 @@
-# JEdit
+<div align="center">
 
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" height="100" alt="Java Logo" />
+
+  <h1>JEdit</h1>
+  <h3>!!!!!!! Not baked yet !!!!!!!</h3>
+  <h6>---> Random simple not working editor....<---</h6>
+
+  ![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
+  ![Java](https://img.shields.io/badge/Java-17+-blue?style=for-the-badge&logo=java)
+  ![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
+
+  <img src="https://cdn-icons-png.flaticon.com/512/1076/1076742.png" width="100" alt="Under Construction Icon"/>
+
+  <h4>#### WORK IN PROGRESSSSSSS ####</h4>
+  <h4>#### UNDER CONSTRUCTION ####</h4>
+
+  -----------------------------------------------------------------------------------------
+
+</div>
 Simple Java-based code editor with toy Language Server Protocol (LSP) and Debug Adapter Protocol (DAP) integration.
 
 
@@ -45,4 +63,10 @@ JEdit/                                    # Maven aggregator
 ├── LICENSE
 ├── pom.xml                               # Parent Maven POM
 └── README.md
+
+
+```bash
+cd Editor
+mvn clean install
+mvn exec:java -Dexec.mainClass="com.keresman.editor.Main"
 ```
