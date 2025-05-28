@@ -45,17 +45,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>Utilities</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.keresman</groupId>
-                    <artifactId>Enums</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.keresman</groupId>
-                    <artifactId>Exceptions</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
