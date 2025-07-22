@@ -6,7 +6,7 @@
         <artifactId>JEdit</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>Editor</artifactId>
+    <artifactId>jedit-editor</artifactId>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -62,4 +62,5 @@
         <maven.compiler.target>20</maven.compiler.target>
         <exec.mainClass>com.keresman.editor.Main</exec.mainClass>
     </properties>
+    <name>jedit-editor</name>
 </project>

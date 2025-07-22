@@ -6,10 +6,13 @@
         <artifactId>JEdit</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>Utilities</artifactId>
+    <groupId>com.keresman.jlang</groupId>
+    <artifactId>jedit-jlang</artifactId>
     <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
+        <exec.mainClass>com.keresman.jlang.jlang.Jlang</exec.mainClass>
     </properties>
+    <name>jedit-jlang</name>
 </project>

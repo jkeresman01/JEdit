@@ -6,12 +6,12 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>LSP</module>
-        <module>DAP</module>
-        <module>Utilities</module>
-        <module>Editor</module>
-        <module>Components</module>
-        <module>Jlang</module>
+        <module>jedit-components</module>
+        <module>jedit-dap</module>
+        <module>jedit-editor</module>
+        <module>jedit-jlang</module>
+        <module>jedit-lsp</module>
+        <module>jedit-utilities</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
