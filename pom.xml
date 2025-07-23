@@ -13,6 +13,7 @@
         <module>jedit-lsp</module>
         <module>jedit-utilities</module>
         <module>jedit-plugin-api</module>
+        <module>jedit-model</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

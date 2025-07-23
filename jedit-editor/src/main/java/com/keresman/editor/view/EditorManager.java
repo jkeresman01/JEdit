@@ -6,6 +6,7 @@ import com.keresman.editor.events.EditorEventBusImpl;
 import com.keresman.enums.EditOptions;
 import com.keresman.enums.StringConstants;
 import com.keresman.exceptions.ThrowingExceptionTask;
+import com.keresman.jedit.model.ProjectActions;
 import com.keresman.lsp.LSPConnector;
 import com.keresman.lsp.LspClientManager;
 import com.keresman.lsp.events.EditorEventBus;
@@ -27,7 +28,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 //TODO -> fix gazilion bugs
-public class EditorManager extends EditorManagerDesigner {
+public class EditorManager extends EditorManagerDesigner implements ProjectActions {
 
     private static final String WELCOME = "Welcome";
     private static final String PROJECTS = "Projects";
@@ -196,6 +197,21 @@ public class EditorManager extends EditorManagerDesigner {
     }
 
     @Override
+    public void openRecetFile(ActionEvent evt) {
+        miOpen.doClick();
+    }
+
+    @Override
+    public void createNewFile(ActionEvent evt) {
+        miNew.doClick();
+    }
+
+    @Override
+    public void openRecentProject(ActionEvent evt) {
+        miViewProjects.doClick();
+    }
+
+    @Override
     public void miViewProjectsActionPerformed(ActionEvent evt) {
         //TODO
     }
@@ -204,4 +220,5 @@ public class EditorManager extends EditorManagerDesigner {
     public void miViewConsoleActionPerformed(ActionEvent evt) {
         //TODO
     }
+
 }
