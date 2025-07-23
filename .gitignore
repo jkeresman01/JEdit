@@ -30,3 +30,9 @@ replay_pid*
 /Enums/target/
 /Components/target/
 /Jlang/target/
+/jedit-editor/target/
+/jedit-utilities/target/
+/jedit-plugin/target/
+/jedit-lsp/target/
+/jedit-components/target/
+/jedit-jlang/target/

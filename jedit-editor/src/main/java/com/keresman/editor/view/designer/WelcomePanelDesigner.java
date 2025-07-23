@@ -1,4 +1,4 @@
-package com.keresman.editor.view.welcome.designer;
+package com.keresman.editor.view.designer;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -9,12 +9,12 @@ public abstract class WelcomePanelDesigner extends JPanel {
     protected javax.swing.JButton btnNewFile;
     protected javax.swing.JButton btnOpenFile;
     protected javax.swing.JButton btnOpenProject;
-    protected javax.swing.JLabel jLabel1;
-    protected javax.swing.JPanel jPanel1;
-    protected javax.swing.JPanel jPanel2;
-    protected javax.swing.JScrollPane jScrollPane1;
-    protected javax.swing.JTextArea jTextArea1;
+    protected javax.swing.JLabel lblCreatedBy;
     protected javax.swing.JLabel lblTitle;
+    protected javax.swing.JPanel pnlBottom;
+    protected javax.swing.JPanel pnlMain;
+    protected javax.swing.JScrollPane spRecentFiles;
+    protected javax.swing.JTextArea taRecentFIles;
     // End of variables declaration//GEN-END:variables
 
    protected WelcomePanelDesigner() {
@@ -26,14 +26,14 @@ public abstract class WelcomePanelDesigner extends JPanel {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlBottom = new javax.swing.JPanel();
+        lblCreatedBy = new javax.swing.JLabel();
+        pnlMain = new javax.swing.JPanel();
         btnOpenProject = new javax.swing.JButton();
         btnOpenFile = new javax.swing.JButton();
         btnNewFile = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        spRecentFiles = new javax.swing.JScrollPane();
+        taRecentFIles = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(30, 30, 30));
         setPreferredSize(new java.awt.Dimension(1080, 800));
@@ -46,17 +46,17 @@ public abstract class WelcomePanelDesigner extends JPanel {
         lblTitle.setPreferredSize(new java.awt.Dimension(249, 30));
         add(lblTitle, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        pnlBottom.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("JEditor 0.1 | by Josip   ");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+        lblCreatedBy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCreatedBy.setForeground(new java.awt.Color(30, 30, 30));
+        lblCreatedBy.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCreatedBy.setText("JEditor 0.1 | by Josip   ");
+        pnlBottom.add(lblCreatedBy, java.awt.BorderLayout.CENTER);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_END);
+        add(pnlBottom, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnOpenProject.setText("Open Project");
         btnOpenProject.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public abstract class WelcomePanelDesigner extends JPanel {
                 btnOpenProjectActionPerformed(evt);
             }
         });
-        jPanel2.add(btnOpenProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 120, 30));
+        pnlMain.add(btnOpenProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 120, 30));
 
         btnOpenFile.setText("Open File");
         btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ public abstract class WelcomePanelDesigner extends JPanel {
                 btnOpenFileActionPerformed(evt);
             }
         });
-        jPanel2.add(btnOpenFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 120, 30));
+        pnlMain.add(btnOpenFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 120, 30));
 
         btnNewFile.setText("New File");
         btnNewFile.addActionListener(new java.awt.event.ActionListener() {
@@ -80,20 +80,20 @@ public abstract class WelcomePanelDesigner extends JPanel {
                 btnNewFileActionPerformed(evt);
             }
         });
-        jPanel2.add(btnNewFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 120, 30));
+        pnlMain.add(btnNewFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 120, 30));
 
-        jTextArea1.setBackground(new java.awt.Color(40, 40, 40));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextArea1.setRows(5);
-        jTextArea1.setText(" Recent Files:\n            - C:/projects/test.txt\n            - C:/notes/ideas.md\n            - C:/code/sample.java");
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jScrollPane1.setViewportView(jTextArea1);
+        taRecentFIles.setBackground(new java.awt.Color(40, 40, 40));
+        taRecentFIles.setColumns(20);
+        taRecentFIles.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        taRecentFIles.setForeground(new java.awt.Color(153, 153, 153));
+        taRecentFIles.setRows(5);
+        taRecentFIles.setText(" Recent Files:\n            - C:/projects/test.txt\n            - C:/notes/ideas.md\n            - C:/code/sample.java");
+        taRecentFIles.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        spRecentFiles.setViewportView(taRecentFIles);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 440, 140));
+        pnlMain.add(spRecentFiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 440, 140));
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(pnlMain, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 

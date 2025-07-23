@@ -1,4 +1,4 @@
-package com.keresman.editor.view.app.designer;
+package com.keresman.editor.view.designer;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -6,15 +6,12 @@ import javax.swing.JFrame;
 public abstract class EditorManagerDesigner extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JMenuBar jMenuBar1;
-    protected javax.swing.JPopupMenu.Separator jSeparator1;
-    protected javax.swing.JPopupMenu.Separator jSeparator2;
-    protected javax.swing.JPopupMenu.Separator jSeparator3;
-    protected javax.swing.JMenu menuEdit;
-    protected javax.swing.JMenu menuFile;
+    protected javax.swing.JMenu mEdit;
+    protected javax.swing.JMenu mFile;
+    protected javax.swing.JMenu mOptions;
+    protected javax.swing.JMenu mView;
+    protected javax.swing.JMenuBar mbMain;
     protected javax.swing.JMenu menuHelp;
-    protected javax.swing.JMenu menuOptions;
-    protected javax.swing.JMenu menuView;
     protected javax.swing.JMenuItem miAbout;
     protected javax.swing.JMenuItem miExit;
     protected javax.swing.JMenuItem miNew;
@@ -25,6 +22,9 @@ public abstract class EditorManagerDesigner extends JFrame {
     protected javax.swing.JMenuItem miSaveAs;
     protected javax.swing.JCheckBoxMenuItem miViewConsole;
     protected javax.swing.JCheckBoxMenuItem miViewProjects;
+    protected javax.swing.JPopupMenu.Separator spExit;
+    protected javax.swing.JPopupMenu.Separator spProject;
+    protected javax.swing.JPopupMenu.Separator spSave;
     protected javax.swing.JTabbedPane tpCenter;
     protected javax.swing.JTabbedPane tpLeft;
     // End of variables declaration//GEN-END:variables
@@ -39,23 +39,23 @@ public abstract class EditorManagerDesigner extends JFrame {
 
         tpLeft = new javax.swing.JTabbedPane();
         tpCenter = new javax.swing.JTabbedPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuFile = new javax.swing.JMenu();
+        mbMain = new javax.swing.JMenuBar();
+        mFile = new javax.swing.JMenu();
         miNew = new javax.swing.JMenuItem();
         miOpen = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        spProject = new javax.swing.JPopupMenu.Separator();
         miSave = new javax.swing.JMenuItem();
         miSaveAs = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        spSave = new javax.swing.JPopupMenu.Separator();
         miPageSetup = new javax.swing.JMenuItem();
         miPrint = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        spExit = new javax.swing.JPopupMenu.Separator();
         miExit = new javax.swing.JMenuItem();
-        menuEdit = new javax.swing.JMenu();
-        menuView = new javax.swing.JMenu();
+        mEdit = new javax.swing.JMenu();
+        mView = new javax.swing.JMenu();
         miViewProjects = new javax.swing.JCheckBoxMenuItem();
         miViewConsole = new javax.swing.JCheckBoxMenuItem();
-        menuOptions = new javax.swing.JMenu();
+        mOptions = new javax.swing.JMenu();
         menuHelp = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
 
@@ -67,8 +67,8 @@ public abstract class EditorManagerDesigner extends JFrame {
         getContentPane().add(tpLeft, java.awt.BorderLayout.LINE_START);
         getContentPane().add(tpCenter, java.awt.BorderLayout.CENTER);
 
-        menuFile.setMnemonic('F');
-        menuFile.setText("File");
+        mFile.setMnemonic('F');
+        mFile.setText("File");
 
         miNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miNew.setText("New");
@@ -77,7 +77,7 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miNewActionPerformed(evt);
             }
         });
-        menuFile.add(miNew);
+        mFile.add(miNew);
 
         miOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miOpen.setText("Open Project");
@@ -86,8 +86,8 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miOpenActionPerformed(evt);
             }
         });
-        menuFile.add(miOpen);
-        menuFile.add(jSeparator3);
+        mFile.add(miOpen);
+        mFile.add(spProject);
 
         miSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miSave.setText("Save");
@@ -96,7 +96,7 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miSaveActionPerformed(evt);
             }
         });
-        menuFile.add(miSave);
+        mFile.add(miSave);
 
         miSaveAs.setText("Save as");
         miSaveAs.addActionListener(new java.awt.event.ActionListener() {
@@ -104,8 +104,8 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miSaveAsActionPerformed(evt);
             }
         });
-        menuFile.add(miSaveAs);
-        menuFile.add(jSeparator1);
+        mFile.add(miSaveAs);
+        mFile.add(spSave);
 
         miPageSetup.setText("Page setup");
         miPageSetup.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miPageSetupActionPerformed(evt);
             }
         });
-        menuFile.add(miPageSetup);
+        mFile.add(miPageSetup);
 
         miPrint.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miPrint.setText("Print");
@@ -122,8 +122,8 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miPrintActionPerformed(evt);
             }
         });
-        menuFile.add(miPrint);
-        menuFile.add(jSeparator2);
+        mFile.add(miPrint);
+        mFile.add(spExit);
 
         miExit.setText("Exit");
         miExit.addActionListener(new java.awt.event.ActionListener() {
@@ -131,16 +131,16 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miExitActionPerformed(evt);
             }
         });
-        menuFile.add(miExit);
+        mFile.add(miExit);
 
-        jMenuBar1.add(menuFile);
+        mbMain.add(mFile);
 
-        menuEdit.setMnemonic('E');
-        menuEdit.setText("Edit");
-        jMenuBar1.add(menuEdit);
+        mEdit.setMnemonic('E');
+        mEdit.setText("Edit");
+        mbMain.add(mEdit);
 
-        menuView.setMnemonic('V');
-        menuView.setText("View");
+        mView.setMnemonic('V');
+        mView.setText("View");
 
         miViewProjects.setSelected(true);
         miViewProjects.setText("Projects");
@@ -149,7 +149,7 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miViewProjectsActionPerformed(evt);
             }
         });
-        menuView.add(miViewProjects);
+        mView.add(miViewProjects);
 
         miViewConsole.setSelected(true);
         miViewConsole.setText("Console");
@@ -158,13 +158,13 @@ public abstract class EditorManagerDesigner extends JFrame {
                 miViewConsoleActionPerformed(evt);
             }
         });
-        menuView.add(miViewConsole);
+        mView.add(miViewConsole);
 
-        jMenuBar1.add(menuView);
+        mbMain.add(mView);
 
-        menuOptions.setMnemonic('O');
-        menuOptions.setText("Options");
-        jMenuBar1.add(menuOptions);
+        mOptions.setMnemonic('O');
+        mOptions.setText("Options");
+        mbMain.add(mOptions);
 
         menuHelp.setMnemonic('H');
         menuHelp.setText("Help");
@@ -178,9 +178,9 @@ public abstract class EditorManagerDesigner extends JFrame {
         });
         menuHelp.add(miAbout);
 
-        jMenuBar1.add(menuHelp);
+        mbMain.add(menuHelp);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mbMain);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -5,15 +5,10 @@ import javax.swing.UIManager;
 
 /**
  * Utility class for setting the Swing look and feel.
- *
- * This class is not intended to be extended or instantiated. It follows the
- * utility class design pattern, and explicitly forbids subclassing and
- * instantiation
- *
  */
-public final class UIUtils {
+public final class SwingUtils {
 
-    private UIUtils() {
+    private SwingUtils() {
         // Suppresses default constructor, ensuring non-instantiability.
     }
 

@@ -8,10 +8,6 @@ import javax.swing.KeyStroke;
 /**
  * A utility class for working with menu items.
  *
- * This class is not intended to be extended or instantiated. It follows the
- * utility class design pattern, and explicitly forbids subclassing and
- * instantiation
- *
  */
 public final class MenuUtils {
 

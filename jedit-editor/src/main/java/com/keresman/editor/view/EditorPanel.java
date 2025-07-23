@@ -1,6 +1,6 @@
-package com.keresman.editor.view.edit;
+package com.keresman.editor.view;
 
-import com.keresman.editor.view.edit.designer.EditorPanelDesigner;
+import com.keresman.editor.view.designer.EditorPanelDesigner;
 import com.keresman.editor.listeners.EditorDocumentHighlightListener;
 import com.keresman.enums.FileExtensions;
 import com.keresman.jlang.highlight.SyntaxHighlighter;

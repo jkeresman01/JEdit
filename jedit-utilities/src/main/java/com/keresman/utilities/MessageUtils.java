@@ -7,10 +7,6 @@ import javax.swing.JOptionPane;
  * Utility class for displaying standardized message dialogs using
  * {@link JOptionPane}.
  *
- * This class is not intended to be extended or instantiated. It follows the
- * utility class design pattern, and explicitly forbids subclassing and
- * instantiation
- *
  */
 public final class MessageUtils {
 
@@ -21,7 +17,7 @@ public final class MessageUtils {
     /**
      * Displays an information message dialog.
      *
-     * @param message the message to display
+     * @param message
      */
     public static void showInformationMessage(String message) {
         JOptionPane.showMessageDialog(
@@ -35,7 +31,7 @@ public final class MessageUtils {
     /**
      * Displays an information message dialog.
      *
-     * @param message the message to display
+     * @param message
      */
     public static void showInformationMessage(String title, String message) {
         JOptionPane.showMessageDialog(
@@ -49,7 +45,7 @@ public final class MessageUtils {
     /**
      * Displays a warning message dialog.
      *
-     * @param message the message to display
+     * @param message
      */
     public static void showWarningMessage(String message) {
         JOptionPane.showMessageDialog(
@@ -63,7 +59,7 @@ public final class MessageUtils {
     /**
      * Displays an error message dialog.
      *
-     * @param message the message to display
+     * @param message
      */
     public static void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(

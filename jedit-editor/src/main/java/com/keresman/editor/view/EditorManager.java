@@ -1,11 +1,11 @@
-package com.keresman.editor.view.app;
+package com.keresman.editor.view;
 
-import com.keresman.editor.view.app.designer.EditorManagerDesigner;
+import com.keresman.editor.view.designer.EditorManagerDesigner;
 import com.keresman.components.ClosablePanel;
 import com.keresman.editor.events.EditorEventBusImpl;
-import com.keresman.editor.view.edit.EditorPanel;
-import com.keresman.editor.view.projects.ProjectTreePanel;
-import com.keresman.editor.view.welcome.WelcomePanel;
+import com.keresman.editor.view.EditorPanel;
+import com.keresman.editor.view.ProjectTreePanel;
+import com.keresman.editor.view.WelcomePanel;
 import com.keresman.enums.EditOptions;
 import com.keresman.enums.StringConstants;
 import com.keresman.exceptions.ThrowingExceptionTask;
@@ -62,7 +62,7 @@ public class EditorManager extends EditorManagerDesigner {
                 KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK)
         );
 
-        menuEdit.add(cutMenuItem);
+        mEdit.add(cutMenuItem);
     }
 
     private void initPasteMenuItem() {
@@ -72,7 +72,7 @@ public class EditorManager extends EditorManagerDesigner {
                 KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK)
         );
 
-        menuEdit.add(pasteMenuItem);
+        mEdit.add(pasteMenuItem);
     }
 
     private void initCopyMenuItem() {
@@ -82,7 +82,7 @@ public class EditorManager extends EditorManagerDesigner {
                 KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
         );
 
-        menuEdit.add(copyMenuItem);
+        mEdit.add(copyMenuItem);
     }
 
     private void initSelectAllMenuItem() {
@@ -92,7 +92,7 @@ public class EditorManager extends EditorManagerDesigner {
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK)
         );
 
-        menuEdit.add(selectAllMenuItem);
+        mEdit.add(selectAllMenuItem);
     }
 
     private void initPanels() {

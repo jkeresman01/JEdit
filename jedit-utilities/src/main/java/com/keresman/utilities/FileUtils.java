@@ -13,10 +13,6 @@ import javax.swing.filechooser.FileSystemView;
 /**
  * A utility class for basic file operations.
  *
- * This class is not intended to be extended or instantiated. It follows the
- * utility class design pattern, and explicitly forbids subclassing and
- * instantiation
- *
  */
 public final class FileUtils {
 
@@ -35,10 +31,10 @@ public final class FileUtils {
      * Copies a file from the source path to the destination path, creating any
      * necessary directories in the destination path.
      *
-     * @param source the source file path
-     * @param destination the destination file path
+     * @param source
+     * @param destination
      *
-     * @throws IOException if an I/O error occurs
+     * @throws IOException
      */
     public static void copy(String source, String destination) throws IOException {
         createDirPath(destination);
@@ -64,8 +60,8 @@ public final class FileUtils {
      * Opens a file chooser dialog for uploading a file with specific
      * extensions.
      *
-     * @param description a description for the file filter
-     * @param extensions the allowed file extensions
+     * @param description
+     * @param extensions
      *
      * @return an {@code Optional<File>} containing the selected file, or empty
      * if no valid file is selected
@@ -111,7 +107,8 @@ public final class FileUtils {
     /**
      * Loads text content from the given file.
      *
-     * @param file the file to read
+     * @param file
+     * 
      * @return an {@code Optional<String>} containing the file content if
      * successful, or empty if the file doesn't exist or can't be read
      */
@@ -172,9 +169,8 @@ public final class FileUtils {
      * Saves the provided text to the specified file. If no file is provided,
      * opens a save dialog to select a destination file.
      *
-     * @param text the text content to save
-     * @param optFile an {@code Optional<File>} representing the file to which
-     * the text should be saved; if empty, the user is prompted to choose a file
+     * @param text
+     * @param optFile
      *
      * @return an {@code Optional<File>} containing the file that was written
      * to, or empty if the operation was cancelled or failed
