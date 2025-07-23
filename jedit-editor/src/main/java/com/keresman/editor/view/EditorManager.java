@@ -22,6 +22,7 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import javax.swing.ActionMap;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -188,12 +189,10 @@ public class EditorManager extends EditorManagerDesigner implements ProjectActio
     }
 
     private void closeWelcomePanel() {
-        for (int i = 0; i < tpCenter.getTabCount(); ++i) {
-            if (tpCenter.getComponentAt(i) instanceof WelcomePanel) {
-                tpCenter.removeTabAt(i);
-                break;
-            }
-        }
+        IntStream.range(0, tpCenter.getTabCount())
+                .filter(i -> tpCenter.getComponentAt(i) instanceof WelcomePanel)
+                .findFirst()
+                .ifPresent(tpCenter::removeTabAt);
     }
 
     @Override
