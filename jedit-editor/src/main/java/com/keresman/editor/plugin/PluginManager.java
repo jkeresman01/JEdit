@@ -32,7 +32,7 @@ public final class PluginManager {
 
         if (jars == null) {
             MessageUtils.showWarningMessage(
-                    "No can do for plugins dir: ".formatted(pluginsDir.getAbsoluteFile().toString()));
+                    "No can do for plugins dir: %s".formatted(pluginsDir.getAbsoluteFile().toString()));
             return;
         }
 
