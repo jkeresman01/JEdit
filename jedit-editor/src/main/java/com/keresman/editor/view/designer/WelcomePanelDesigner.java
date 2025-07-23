@@ -42,7 +42,7 @@ public abstract class WelcomePanelDesigner extends JPanel {
         lblTitle.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Welcome to jeditor");
+        lblTitle.setText("Welcome to jedit");
         lblTitle.setPreferredSize(new java.awt.Dimension(249, 30));
         add(lblTitle, java.awt.BorderLayout.PAGE_START);
 
@@ -51,7 +51,7 @@ public abstract class WelcomePanelDesigner extends JPanel {
         lblCreatedBy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCreatedBy.setForeground(new java.awt.Color(30, 30, 30));
         lblCreatedBy.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCreatedBy.setText("JEditor 0.1 | by Josip   ");
+        lblCreatedBy.setText("JEdit 0.1 | by Josip   ");
         pnlBottom.add(lblCreatedBy, java.awt.BorderLayout.CENTER);
 
         add(pnlBottom, java.awt.BorderLayout.PAGE_END);
