@@ -11,7 +11,7 @@ import java.util.ServiceLoader;
 
 public final class PluginManager {
 
-    private static final List<JEditPlugin> plugins = new ArrayList<>();
+    private final List<JEditPlugin> plugins = new ArrayList<>();
 
     private static PluginManager instance;
 
