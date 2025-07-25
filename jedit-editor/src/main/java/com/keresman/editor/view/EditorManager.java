@@ -1,8 +1,8 @@
 package com.keresman.editor.view;
 
-import com.keresman.editor.view.designer.EditorManagerDesigner;
 import com.keresman.components.ClosablePanel;
 import com.keresman.editor.events.EditorEventBusImpl;
+import com.keresman.editor.view.designer.EditorManagerDesigner;
 import com.keresman.enums.EditOptions;
 import com.keresman.enums.StringConstants;
 import com.keresman.exceptions.ThrowingExceptionTask;
@@ -28,196 +28,194 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
-//TODO -> fix gazilion bugs
+// TODO -> fix gazilion bugs
 public class EditorManager extends EditorManagerDesigner implements ProjectActions {
 
-    private static final String WELCOME = "Welcome";
-    private static final String PROJECTS = "Projects";
-    private static final String NEW_FILE = "New file";
+  private static final String WELCOME = "Welcome";
+  private static final String PROJECTS = "Projects";
+  private static final String NEW_FILE = "New file";
 
-    private final EditorEventBus eventBus = new EditorEventBusImpl();
+  private final EditorEventBus eventBus = new EditorEventBusImpl();
 
-    private LSPConnector lspConnector;
-    private LspClientManager lspClientManager;
-    private ActionMap actionMap = tpCenter.getActionMap();
+  private LSPConnector lspConnector;
+  private LspClientManager lspClientManager;
+  private ActionMap actionMap = tpCenter.getActionMap();
 
-    public EditorManager() {
-        super();
-        initMenus();
-        initPanels();
-    }
+  public EditorManager() {
+    super();
+    initMenus();
+    initPanels();
+  }
 
-    private void initMenus() {
-        initCutMenuItem();
-        initPasteMenuItem();
-        initCopyMenuItem();
-        initSelectAllMenuItem();
-    }
+  private void initMenus() {
+    initCutMenuItem();
+    initPasteMenuItem();
+    initCopyMenuItem();
+    initSelectAllMenuItem();
+  }
 
-    private void initCutMenuItem() {
-        JMenuItem cutMenuItem = MenuUtils.createMenuItem(
-                actionMap.get(DefaultEditorKit.cutAction),
-                EditOptions.CUT,
-                KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK)
-        );
+  private void initCutMenuItem() {
+    JMenuItem cutMenuItem =
+        MenuUtils.createMenuItem(
+            actionMap.get(DefaultEditorKit.cutAction),
+            EditOptions.CUT,
+            KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
 
-        mEdit.add(cutMenuItem);
-    }
+    mEdit.add(cutMenuItem);
+  }
 
-    private void initPasteMenuItem() {
-        JMenuItem pasteMenuItem = MenuUtils.createMenuItem(
-                actionMap.get(DefaultEditorKit.pasteAction),
-                EditOptions.PASTE,
-                KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK)
-        );
+  private void initPasteMenuItem() {
+    JMenuItem pasteMenuItem =
+        MenuUtils.createMenuItem(
+            actionMap.get(DefaultEditorKit.pasteAction),
+            EditOptions.PASTE,
+            KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
 
-        mEdit.add(pasteMenuItem);
-    }
+    mEdit.add(pasteMenuItem);
+  }
 
-    private void initCopyMenuItem() {
-        JMenuItem copyMenuItem = MenuUtils.createMenuItem(
-                actionMap.get(DefaultEditorKit.copyAction),
-                EditOptions.COPY,
-                KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
-        );
+  private void initCopyMenuItem() {
+    JMenuItem copyMenuItem =
+        MenuUtils.createMenuItem(
+            actionMap.get(DefaultEditorKit.copyAction),
+            EditOptions.COPY,
+            KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 
-        mEdit.add(copyMenuItem);
-    }
+    mEdit.add(copyMenuItem);
+  }
 
-    private void initSelectAllMenuItem() {
-        JMenuItem selectAllMenuItem = MenuUtils.createMenuItem(
-                actionMap.get(DefaultEditorKit.selectAllAction),
-                EditOptions.SELECT_ALL,
-                KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK)
-        );
+  private void initSelectAllMenuItem() {
+    JMenuItem selectAllMenuItem =
+        MenuUtils.createMenuItem(
+            actionMap.get(DefaultEditorKit.selectAllAction),
+            EditOptions.SELECT_ALL,
+            KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
 
-        mEdit.add(selectAllMenuItem);
-    }
+    mEdit.add(selectAllMenuItem);
+  }
 
-    private void initPanels() {
-        initProjectsPanel();
-        initWelcomePanel();
-    }
+  private void initPanels() {
+    initProjectsPanel();
+    initWelcomePanel();
+  }
 
-    private void initProjectsPanel() {
-        ProjectTreePanel projectTreePanel = new ProjectTreePanel();
-        ClosablePanel.attachTo(tpLeft, projectTreePanel, PROJECTS);
-    }
+  private void initProjectsPanel() {
+    ProjectTreePanel projectTreePanel = new ProjectTreePanel();
+    ClosablePanel.attachTo(tpLeft, projectTreePanel, PROJECTS);
+  }
 
-    private void initWelcomePanel() {
-        WelcomePanel welcomePanel = new WelcomePanel(this);
-        ClosablePanel.attachTo(tpCenter, welcomePanel, WELCOME);
-    }
+  private void initWelcomePanel() {
+    WelcomePanel welcomePanel = new WelcomePanel(this);
+    ClosablePanel.attachTo(tpCenter, welcomePanel, WELCOME);
+  }
 
-    private void initLSP() {
-        lspConnector = new LSPConnector(eventBus);
+  private void initLSP() {
+    lspConnector = new LSPConnector(eventBus);
 
-        ThrowingExceptionTask<IOException> throwingExceptionTask = () -> {
-            lspConnector.start("java", "-jar", "dummy-jlang-server.jar");
-            lspClientManager = new LspClientManager(lspConnector.getLanguageServer());
+    ThrowingExceptionTask<IOException> throwingExceptionTask =
+        () -> {
+          lspConnector.start("java", "-jar", "dummy-jlang-server.jar");
+          lspClientManager = new LspClientManager(lspConnector.getLanguageServer());
         };
 
-        ExceptionUtils.executeUnchecked(
-                throwingExceptionTask,
-                "No can do, initliazation of LSP server has failed!"
-        );
+    ExceptionUtils.executeUnchecked(
+        throwingExceptionTask, "No can do, initliazation of LSP server has failed!");
+  }
+
+  @Override
+  public void miNewActionPerformed(ActionEvent evt) {
+    EditorPanel editorPanel = new EditorPanel(Optional.empty(), lspClientManager);
+    editorPanel.setContent(StringConstants.EMPTY.value());
+    ClosablePanel.attachTo(tpCenter, editorPanel, NEW_FILE);
+  }
+
+  @Override
+  public void miOpenActionPerformed(ActionEvent evt) {
+    Optional<File> optFile = FileUtils.selectFile();
+
+    if (optFile.isPresent()) {
+      EditorPanel editorPanel = new EditorPanel(optFile, lspClientManager);
+      Optional<String> optFileContent = FileUtils.loadText(optFile.get());
+
+      if (optFileContent.isPresent()) {
+        editorPanel.setContent(optFileContent.get());
+        ClosablePanel.attachTo(tpCenter, editorPanel, optFile.get().getName());
+        tpCenter.setSelectedComponent(editorPanel);
+        closeWelcomePanel();
+      }
     }
+  }
 
-    @Override
-    public void miNewActionPerformed(ActionEvent evt) {
-        EditorPanel editorPanel = new EditorPanel(Optional.empty(), lspClientManager);
-        editorPanel.setContent(StringConstants.EMPTY.value());
-        ClosablePanel.attachTo(tpCenter, editorPanel, NEW_FILE);
+  @Override
+  public void miSaveActionPerformed(ActionEvent evt) {
+    Component selectedComponent = tpCenter.getSelectedComponent();
+
+    if (selectedComponent instanceof EditorPanel editor) {
+      FileUtils.saveText(editor.getContent(), Optional.empty());
     }
+  }
 
-    @Override
-    public void miOpenActionPerformed(ActionEvent evt) {
-        Optional<File> optFile = FileUtils.selectFile();
+  @Override
+  public void miSaveAsActionPerformed(ActionEvent evt) {
+    Component selectedComponent = tpCenter.getSelectedComponent();
 
-        if (optFile.isPresent()) {
-            EditorPanel editorPanel = new EditorPanel(optFile, lspClientManager);
-            Optional<String> optFileContent = FileUtils.loadText(optFile.get());
-
-            if (optFileContent.isPresent()) {
-                editorPanel.setContent(optFileContent.get());
-                ClosablePanel.attachTo(tpCenter, editorPanel, optFile.get().getName());
-                tpCenter.setSelectedComponent(editorPanel);
-                closeWelcomePanel();
-            }
-        }
+    if (selectedComponent instanceof EditorPanel editor) {
+      FileUtils.saveText(editor.getContent(), Optional.empty());
     }
+  }
 
-    @Override
-    public void miSaveActionPerformed(ActionEvent evt) {
-        Component selectedComponent = tpCenter.getSelectedComponent();
+  @Override
+  public void miPageSetupActionPerformed(ActionEvent evt) {
+    PrinterJob printerJob = PrinterJob.getPrinterJob();
+    printerJob.pageDialog(printerJob.defaultPage());
+  }
 
-        if (selectedComponent instanceof EditorPanel editor) {
-            FileUtils.saveText(editor.getContent(), Optional.empty());
-        }
-    }
+  @Override
+  public void miPrintActionPerformed(ActionEvent evt) {
+    PrinterJob printerJob = PrinterJob.getPrinterJob();
+    printerJob.printDialog();
+  }
 
-    @Override
-    public void miSaveAsActionPerformed(ActionEvent evt) {
-        Component selectedComponent = tpCenter.getSelectedComponent();
+  @Override
+  public void miExitActionPerformed(ActionEvent evt) {
+    miSave.doClick();
+    dispose();
+  }
 
-        if (selectedComponent instanceof EditorPanel editor) {
-            FileUtils.saveText(editor.getContent(), Optional.empty());
-        }
-    }
+  @Override
+  public void miAboutActionPerformed(ActionEvent evt) {
+    MessageUtils.showInformationMessage("JEditor, Version 0.1");
+  }
 
-    @Override
-    public void miPageSetupActionPerformed(ActionEvent evt) {
-        PrinterJob printerJob = PrinterJob.getPrinterJob();
-        printerJob.pageDialog(printerJob.defaultPage());
-    }
+  private void closeWelcomePanel() {
+    IntStream.range(0, tpCenter.getTabCount())
+        .filter(i -> tpCenter.getComponentAt(i) instanceof WelcomePanel)
+        .findFirst()
+        .ifPresent(tpCenter::removeTabAt);
+  }
 
-    @Override
-    public void miPrintActionPerformed(ActionEvent evt) {
-        PrinterJob printerJob = PrinterJob.getPrinterJob();
-        printerJob.printDialog();
-    }
+  @Override
+  public void openRecetFile(ActionEvent evt) {
+    miOpen.doClick();
+  }
 
-    @Override
-    public void miExitActionPerformed(ActionEvent evt) {
-        miSave.doClick();
-        dispose();
-    }
+  @Override
+  public void createNewFile(ActionEvent evt) {
+    miNew.doClick();
+  }
 
-    @Override
-    public void miAboutActionPerformed(ActionEvent evt) {
-        MessageUtils.showInformationMessage("JEditor, Version 0.1");
-    }
+  @Override
+  public void openRecentProject(ActionEvent evt) {
+    miViewProjects.doClick();
+  }
 
-    private void closeWelcomePanel() {
-        IntStream.range(0, tpCenter.getTabCount())
-                .filter(i -> tpCenter.getComponentAt(i) instanceof WelcomePanel)
-                .findFirst()
-                .ifPresent(tpCenter::removeTabAt);
-    }
+  @Override
+  public void miViewProjectsActionPerformed(ActionEvent evt) {
+    // TODO
+  }
 
-    @Override
-    public void openRecetFile(ActionEvent evt) {
-        miOpen.doClick();
-    }
-
-    @Override
-    public void createNewFile(ActionEvent evt) {
-        miNew.doClick();
-    }
-
-    @Override
-    public void openRecentProject(ActionEvent evt) {
-        miViewProjects.doClick();
-    }
-
-    @Override
-    public void miViewProjectsActionPerformed(ActionEvent evt) {
-        //TODO
-    }
-
-    @Override
-    public void miViewConsoleActionPerformed(ActionEvent evt) {
-        //TODO
-    }
-
+  @Override
+  public void miViewConsoleActionPerformed(ActionEvent evt) {
+    // TODO
+  }
 }

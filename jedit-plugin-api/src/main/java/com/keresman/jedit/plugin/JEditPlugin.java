@@ -2,9 +2,9 @@ package com.keresman.jedit.plugin;
 
 public interface JEditPlugin {
 
-    String getName();
+  String getName();
 
-    void onLoad();
+  void onLoad();
 
-    void onUnload();
+  void onUnload();
 }

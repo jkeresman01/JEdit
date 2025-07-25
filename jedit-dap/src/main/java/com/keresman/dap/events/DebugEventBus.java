@@ -18,36 +18,35 @@ import org.eclipse.lsp4j.debug.ThreadEventArguments;
 
 public interface DebugEventBus {
 
-    void onOutput(OutputEventArguments args);
+  void onOutput(OutputEventArguments args);
 
-    void onInitialized();
+  void onInitialized();
 
-    void onStopped(StoppedEventArguments args);
+  void onStopped(StoppedEventArguments args);
 
-    void onContinued(ContinuedEventArguments args);
+  void onContinued(ContinuedEventArguments args);
 
-    void onExited(ExitedEventArguments args);
+  void onExited(ExitedEventArguments args);
 
-    void onTerminated(TerminatedEventArguments args);
+  void onTerminated(TerminatedEventArguments args);
 
-    void onThread(ThreadEventArguments args);
+  void onThread(ThreadEventArguments args);
 
-    void onBreakpoint(BreakpointEventArguments args);
+  void onBreakpoint(BreakpointEventArguments args);
 
-    void onLoadedSource(LoadedSourceEventArguments args);
+  void onLoadedSource(LoadedSourceEventArguments args);
 
-    void onProcess(ProcessEventArguments args);
+  void onProcess(ProcessEventArguments args);
 
-    void onCapabilities(CapabilitiesEventArguments args);
+  void onCapabilities(CapabilitiesEventArguments args);
 
-    void onInvalidated(InvalidatedEventArguments args);
+  void onInvalidated(InvalidatedEventArguments args);
 
-    void onMemory(MemoryEventArguments args);
+  void onMemory(MemoryEventArguments args);
 
-    void onProgressStart(ProgressStartEventArguments args);
+  void onProgressStart(ProgressStartEventArguments args);
 
-    void onProgressUpdate(ProgressUpdateEventArguments args);
+  void onProgressUpdate(ProgressUpdateEventArguments args);
 
-    void onProgressEnd(ProgressEndEventArguments args);
-
+  void onProgressEnd(ProgressEndEventArguments args);
 }

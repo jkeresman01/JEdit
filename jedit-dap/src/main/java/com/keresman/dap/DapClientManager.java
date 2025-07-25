@@ -1,5 +1,3 @@
 package com.keresman.dap;
 
-public class DapClientManager {
-
-}
+public class DapClientManager {}

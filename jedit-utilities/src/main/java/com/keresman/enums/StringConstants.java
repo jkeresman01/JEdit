@@ -1,21 +1,20 @@
 package com.keresman.enums;
 
 public enum StringConstants {
-    
-    EMPTY(""),
-    SPACE(" "),
-    NEWLINE("\n"),
-    TAB("\t"),
-    COMMA(","),
-    DOT(".");
+  EMPTY(""),
+  SPACE(" "),
+  NEWLINE("\n"),
+  TAB("\t"),
+  COMMA(","),
+  DOT(".");
 
-    private final String value;
+  private final String value;
 
-    StringConstants(String value) {
-        this.value = value;
-    }
+  StringConstants(String value) {
+    this.value = value;
+  }
 
-    public String value() {
-        return value;
-    }
+  public String value() {
+    return value;
+  }
 }

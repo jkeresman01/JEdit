@@ -4,9 +4,9 @@ import org.eclipse.lsp4j.PublishDiagnosticsParams;
 
 public interface EditorEventBus {
 
-    void onDiagnostics(PublishDiagnosticsParams params);
+  void onDiagnostics(PublishDiagnosticsParams params);
 
-    void onLog(String message);
+  void onLog(String message);
 
-    void onShowMessage(String title, String message);
+  void onShowMessage(String title, String message);
 }

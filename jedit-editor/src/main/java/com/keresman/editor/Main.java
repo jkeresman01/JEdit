@@ -7,8 +7,8 @@ import java.awt.EventQueue;
 
 public class Main {
 
-    public static void main(String args[]) {
-        SwingUtils.setLookAndFeel(new FlatDarculaLaf());
-        EventQueue.invokeLater(() -> new EditorManager().setVisible(true));
-    }
+  public static void main(String args[]) {
+    SwingUtils.setLookAndFeel(new FlatDarculaLaf());
+    EventQueue.invokeLater(() -> new EditorManager().setVisible(true));
+  }
 }

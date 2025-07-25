@@ -10,40 +10,40 @@ import org.eclipse.lsp4j.services.LanguageClient;
 
 public class LspClientStub implements LanguageClient {
 
-    private final EditorEventBus eventBus;
+  private final EditorEventBus eventBus;
 
-    public LspClientStub(EditorEventBus eventBus) {
-        this.eventBus = eventBus;
+  public LspClientStub(EditorEventBus eventBus) {
+    this.eventBus = eventBus;
+  }
+
+  @Override
+  public void publishDiagnostics(PublishDiagnosticsParams params) {
+    eventBus.onDiagnostics(params);
+  }
+
+  @Override
+  public void logMessage(MessageParams params) {
+    eventBus.onLog(params.getMessage());
+  }
+
+  @Override
+  public void showMessage(MessageParams params) {
+    eventBus.onShowMessage("LSP Message", params.getMessage());
+  }
+
+  @Override
+  public void telemetryEvent(Object object) {
+    eventBus.onLog("Telementy event: " + object);
+  }
+
+  @Override
+  public CompletableFuture<MessageActionItem> showMessageRequest(ShowMessageRequestParams smrp) {
+    if (smrp.getActions() != null && !smrp.getActions().isEmpty()) {
+      // TODO -- use getFirst() after Java uplift
+      MessageActionItem firstMessageActionItem = smrp.getActions().get(0);
+      return CompletableFuture.completedFuture(firstMessageActionItem);
     }
 
-    @Override
-    public void publishDiagnostics(PublishDiagnosticsParams params) {
-        eventBus.onDiagnostics(params);
-    }
-
-    @Override
-    public void logMessage(MessageParams params) {
-        eventBus.onLog(params.getMessage());
-    }
-
-    @Override
-    public void showMessage(MessageParams params) {
-        eventBus.onShowMessage("LSP Message", params.getMessage());
-    }
-
-    @Override
-    public void telemetryEvent(Object object) {
-        eventBus.onLog("Telementy event: " + object);
-    }
-
-    @Override
-    public CompletableFuture<MessageActionItem> showMessageRequest(ShowMessageRequestParams smrp) {
-        if (smrp.getActions() != null && !smrp.getActions().isEmpty()) {
-            //TODO -- use getFirst() after Java uplift
-            MessageActionItem firstMessageActionItem = smrp.getActions().get(0);
-            return CompletableFuture.completedFuture(firstMessageActionItem);
-        }
-
-        return CompletableFuture.completedFuture(null);
-    }
+    return CompletableFuture.completedFuture(null);
+  }
 }

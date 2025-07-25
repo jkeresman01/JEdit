@@ -37,3 +37,6 @@ replay_pid*
 /jedit-components/target/
 /jedit-jlang/target/
 /jedit-plugin-api/target/
+/target/
+/jedit-dap/target/
+/jedit-model/target/

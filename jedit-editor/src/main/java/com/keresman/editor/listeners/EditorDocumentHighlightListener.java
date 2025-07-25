@@ -6,31 +6,30 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class EditorDocumentHighlightListener implements DocumentListener{
-    
-    private final JTextPane textPane;
-    private final SyntaxHighlighter highlighter;
+public class EditorDocumentHighlightListener implements DocumentListener {
 
-    public EditorDocumentHighlightListener(JTextPane textPane, SyntaxHighlighter highlighter) {
-        this.textPane = textPane;
-        this.highlighter = highlighter;
-    }
+  private final JTextPane textPane;
+  private final SyntaxHighlighter highlighter;
 
-    @Override
-    public void insertUpdate(DocumentEvent e) {
-        highlight();
-    }
+  public EditorDocumentHighlightListener(JTextPane textPane, SyntaxHighlighter highlighter) {
+    this.textPane = textPane;
+    this.highlighter = highlighter;
+  }
 
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-        highlight();
-    }
+  @Override
+  public void insertUpdate(DocumentEvent e) {
+    highlight();
+  }
 
-    @Override
-    public void changedUpdate(DocumentEvent e) {}
+  @Override
+  public void removeUpdate(DocumentEvent e) {
+    highlight();
+  }
 
-    private void highlight() {
-        SwingUtilities.invokeLater(() -> highlighter.highlight(textPane.getText()));
-    }
+  @Override
+  public void changedUpdate(DocumentEvent e) {}
+
+  private void highlight() {
+    SwingUtilities.invokeLater(() -> highlighter.highlight(textPane.getText()));
+  }
 }
-    

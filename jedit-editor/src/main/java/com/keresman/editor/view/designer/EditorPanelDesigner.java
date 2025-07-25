@@ -4,28 +4,28 @@ import javax.swing.JPanel;
 
 public abstract class EditorPanelDesigner extends JPanel {
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JScrollPane spContent;
-    protected javax.swing.JTextPane tpContent;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  protected javax.swing.JScrollPane spContent;
+  protected javax.swing.JTextPane tpContent;
 
-    protected EditorPanelDesigner() {
-        initComponents();
-    }
+  // End of variables declaration//GEN-END:variables
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  protected EditorPanelDesigner() {
+    initComponents();
+  }
 
-        spContent = new javax.swing.JScrollPane();
-        tpContent = new javax.swing.JTextPane();
+  @SuppressWarnings("unchecked")
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        setPreferredSize(new java.awt.Dimension(1080, 800));
-        setLayout(new java.awt.BorderLayout());
+    spContent = new javax.swing.JScrollPane();
+    tpContent = new javax.swing.JTextPane();
 
-        spContent.setViewportView(tpContent);
+    setPreferredSize(new java.awt.Dimension(1080, 800));
+    setLayout(new java.awt.BorderLayout());
 
-        add(spContent, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    spContent.setViewportView(tpContent);
 
+    add(spContent, java.awt.BorderLayout.CENTER);
+  } // </editor-fold>//GEN-END:initComponents
 }

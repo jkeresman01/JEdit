@@ -10,34 +10,34 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class SimpleFileFinderVisitor extends SimpleFileVisitor<Path> {
 
-    private final String targetFileName;
-    private final Path rootPath;
-    private File result;
+  private final String targetFileName;
+  private final Path rootPath;
+  private File result;
 
-    public SimpleFileFinderVisitor(Path rootPath, String targetFileName) {
-        this.rootPath = rootPath;
-        this.targetFileName = targetFileName;
-    }
+  public SimpleFileFinderVisitor(Path rootPath, String targetFileName) {
+    this.rootPath = rootPath;
+    this.targetFileName = targetFileName;
+  }
 
-    @Override
-    public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-        boolean isFileFound = path.getFileName().toString().equals(targetFileName);
-        
-        if (isFileFound){
-            result = path.toFile();
-            return FileVisitResult.TERMINATE;
-        }
-        return FileVisitResult.CONTINUE;
-    }
+  @Override
+  public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+    boolean isFileFound = path.getFileName().toString().equals(targetFileName);
 
-    @Override
-    public FileVisitResult visitFileFailed(Path file, IOException exc) {
-        return (exc instanceof AccessDeniedException)
-                ? FileVisitResult.SKIP_SUBTREE
-                : FileVisitResult.CONTINUE;
+    if (isFileFound) {
+      result = path.toFile();
+      return FileVisitResult.TERMINATE;
     }
+    return FileVisitResult.CONTINUE;
+  }
 
-    public File getResult() {
-        return this.result;
-    }
+  @Override
+  public FileVisitResult visitFileFailed(Path file, IOException exc) {
+    return (exc instanceof AccessDeniedException)
+        ? FileVisitResult.SKIP_SUBTREE
+        : FileVisitResult.CONTINUE;
+  }
+
+  public File getResult() {
+    return this.result;
+  }
 }
